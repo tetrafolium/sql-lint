@@ -37,7 +37,7 @@ inspecode:
         - from: yamllint-task
           path: "/.reports/yamllint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 6}
+      thresholds: {num-issues: 3}
 
   tools:
 
@@ -47,16 +47,16 @@ inspecode:
 
     # fortify:
     #   thresholds: {num-issues: 999}
-  
+
     fossology:
       thresholds: {num-issues: 27}
-  
+
     grep:
       thresholds: {num-issues: 0}
 
     jscpd:
       thresholds: {num-issues: 11}
-  
+
     misspell:
       auto-fix: true
       thresholds: {num-issues: 1}
