@@ -37,7 +37,7 @@ inspecode:
         - from: sqllint-task
           path: "/.reports/sql-lint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 999}
+      thresholds: {num-issues: 11}
 
     - name: yamllint
       type: docker-build

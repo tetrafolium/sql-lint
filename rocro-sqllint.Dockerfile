@@ -29,7 +29,8 @@ COPY . "${REPODIR}"
 WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
-RUN sql-lint --format simple . > "${OUTDIR}/sql-lint.issues" || true
+RUN ( find . -type f -name '*.sql' | \
+      xargs sql-lint --format simple > "${OUTDIR}/sql-lint.json" ) || true
 RUN ls -la "${OUTDIR}"
 
 ### Convert sql-lint issues to SARIF ...
