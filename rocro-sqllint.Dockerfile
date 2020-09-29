@@ -1,8 +1,7 @@
 FROM sandrokeil/typescript AS sqllint-task
 
-### Install tools ...
-RUN apk add --update --no-cache git go && \
-    echo "+++ $(git version)" && \
+### Install golang ...
+RUN apk add --update --no-cache go && \
     echo "+++ $(go version)"
 
 ENV GOBIN="$GOROOT/bin" \
@@ -29,6 +28,7 @@ COPY . "${REPODIR}"
 WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
+RUN find . -type f -name '*.sql'
 RUN ( find . -type f -name '*.sql' | \
       xargs sql-lint --format simple > "${OUTDIR}/sql-lint.issues" ) || true
 RUN ls -la "${OUTDIR}"
