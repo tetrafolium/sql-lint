@@ -28,8 +28,8 @@ COPY . "${REPODIR}"
 WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
-RUN find . -type f -name '*.sql'
-RUN ( find . -type f -name '*.sql' | \
+RUN find . -type f -name '*.sql' > "${OUTDIR}/sql-lint.files"
+RUN ( find . -type f -name '*.sq;' | \
       xargs sql-lint --format simple > "${OUTDIR}/sql-lint.issues" ) || true
 RUN ls -la "${OUTDIR}"
 
