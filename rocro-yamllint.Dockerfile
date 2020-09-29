@@ -1,7 +1,8 @@
 FROM python:3-alpine AS yamllint-task
 
-### Install golang ...
-RUN apk add --update --no-cache go && \
+### Install tools ...
+RUN apk add --update --no-cache git go && \
+    echo "+++ $(git version)" && \
     echo "+++ $(go version)"
 
 ENV GOBIN="$GOROOT/bin" \

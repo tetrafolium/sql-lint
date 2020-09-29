@@ -20,7 +20,7 @@ inspecode:
         - from: hadolint-task
           path: "/.reports/hadolint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 8}
+      thresholds: {num-issues: 12}
 
     - name: sql-lint
       type: docker-build
