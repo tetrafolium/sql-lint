@@ -22,6 +22,23 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 8}
 
+    - name: sql-lint
+      type: docker-build
+      dockerfile: "rocro-sqllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues"
+        - from: sqllint-task
+          path: "/.reports/sql-lint.sarif"
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.sarif"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 999}
+
     - name: yamllint
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
