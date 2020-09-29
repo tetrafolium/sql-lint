@@ -1,5 +1,13 @@
 FROM sandrokeil/typescript AS sqllint-task
 
+### Install golang ...
+RUN apk add --update --no-cache go && \
+    echo "+++ $(go version)"
+
+ENV GOBIN="$GOROOT/bin" \
+    GOPATH="/.go" \
+    PATH="${GOPATH}/bin:/usr/local/go/bin:$PATH"
+
 ### Install sql-lint tool ...
 RUN npm install -g sql-lint && \
     echo "+++ sql-lint .. $(sql-lint --version)"
