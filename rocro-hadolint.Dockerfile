@@ -14,7 +14,7 @@ ENV GOBIN="$GOROOT/bin" \
     GOPATH="/.go" \
     PATH="${GOPATH}/bin:/usr/local/go/bin:$PATH"
 
-ENV REPOPATH="github.com/tetrafolium/algebird" \
+ENV REPOPATH="github.com/tetrafolium/sql-lint" \
     TOOLPATH="github.com/tetrafolium/inspecode-tasks"
 ENV REPODIR="${GOPATH}/src/${REPOPATH}" \
     TOOLDIR="${GOPATH}/src/${TOOLPATH}"
@@ -35,7 +35,7 @@ RUN ( find . -type f -name '*Dockerfile*' | \
 RUN ls -la "${OUTDIR}"
 
 ### Convert hadolint JSON to SARIF ...
-RUN go run "${TOOLDIR}/hadolint/cmd/main.go" \
+RUN go run "${TOOLDIR}/hadolint/cmd/main.go" "${REPOPATH}" \
         < "${OUTDIR}/hadolint.json" \
         > "${OUTDIR}/hadolint.sarif"
 RUN ls -la "${OUTDIR}"
