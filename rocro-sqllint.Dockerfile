@@ -30,7 +30,7 @@ WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
 RUN ( find . -type f -name '*.sql' | \
-      xargs sql-lint --format simple > "${OUTDIR}/sql-lint.json" ) || true
+      xargs sql-lint --format simple > "${OUTDIR}/sql-lint.issues" ) || true
 RUN ls -la "${OUTDIR}"
 
 ### Convert sql-lint issues to SARIF ...
