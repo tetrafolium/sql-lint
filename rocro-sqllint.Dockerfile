@@ -28,10 +28,8 @@ COPY . "${REPODIR}"
 WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
-RUN find . -type f -name '*.sql' > "${OUTDIR}/sql-lint.files"
-RUN ( cat "${OUTDIR}/sql-lint.files" | xargs -n 1 sql-lint --format simple ) \
+RUN ( find . -type f -name '*.sql' -print0 | xargs -0 -n 1 sql-lint --format simple ) \
         > "${OUTDIR}/sql-lint.issues" || true
-#RUN ( sql-lint --format simple test/test-files/test.sql > "${OUTDIR}/sql-lint.issues" ) || true
 RUN ls -la "${OUTDIR}"
 
 ### Convert sql-lint issues to SARIF ...

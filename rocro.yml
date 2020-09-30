@@ -30,8 +30,6 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: sqllint-task
-          path: "/.reports/sql-lint.files"
-        - from: sqllint-task
           path: "/.reports/sql-lint.issues"
         - from: sqllint-task
           path: "/.reports/sql-lint.sarif"
