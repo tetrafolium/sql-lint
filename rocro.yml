@@ -5,6 +5,23 @@ inspecode:
 
   tasks:
 
+    - name: dockerfilelint
+      type: docker-build
+      dockerfile: "rocro-dockerfilelint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: dockerfilelint-task
+          path: "/.reports/dockerfilelint.json"
+        - from: dockerfilelint-task
+          path: "/.reports/dockerfilelint.sarif"
+      reports:
+        - from: dockerfilelint-task
+          path: "/.reports/dockerfilelint.sarif"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 2}
+
     - name: hadolint
       type: docker-build
       dockerfile: "rocro-hadolint.Dockerfile"
@@ -20,7 +37,7 @@ inspecode:
         - from: hadolint-task
           path: "/.reports/hadolint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 12}
+      thresholds: {num-issues: 16}
 
     - name: sql-lint
       type: docker-build
