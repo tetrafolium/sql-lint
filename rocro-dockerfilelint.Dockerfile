@@ -12,7 +12,7 @@ ENV GOBIN="$GOROOT/bin" \
 RUN npm install -g dockerfilelint && \
     echo "+++ dockerfilelint $(dockerfilelint --version)"
 
-ENV REPOPATH="github.com/tetrafolium/dockerfilelint" \
+ENV REPOPATH="github.com/tetrafolium/sql-lint" \
     TOOLPATH="github.com/tetrafolium/inspecode-tasks"
 ENV REPODIR="${GOPATH}/src/${REPOPATH}" \
     TOOLDIR="${GOPATH}/src/${TOOLPATH}"

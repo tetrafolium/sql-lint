@@ -12,7 +12,7 @@ ENV GOBIN="$GOROOT/bin" \
 RUN pip3 install 'yamllint>=1.24.0,<1.25.0' && \
     echo "+++ $(yamllint --version)"
 
-ENV REPOPATH="github.com/tetrafolium/yamllint" \
+ENV REPOPATH="github.com/tetrafolium/sql-lint" \
     TOOLPATH="github.com/tetrafolium/inspecode-tasks"
 ENV REPODIR="${GOPATH}/src/${REPOPATH}" \
     TOOLDIR="${GOPATH}/src/${TOOLPATH}"
