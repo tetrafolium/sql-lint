@@ -39,7 +39,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 16}
 
-    - name: sql-lint
+    - name: sql-lint_SARIF
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
       options:
@@ -56,7 +56,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: yamllint
+    - name: yamllint_SARIF
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
