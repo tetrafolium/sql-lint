@@ -1,8 +1,8 @@
-{{file:./test/test-files/test.sql}}:{{startLine:21}}{{level: }}{{message:[sql-lint: unmatched-parentheses] Unmatched parentheses.}}
-{{file:./test/test-files/test.sql}}:{{startLine:25}}{{level: }}{{message:[sql-lint: missing-where] DELETE statement missing WHERE clause.}}
-{{file:./test/test-files/test.sql}}:{{startLine:35}}{{level: }}{{message:[sql-lint: odd-code-point] Unexpected code point.}}
+{{file:./test/test-files/test.sql}}:{{startLine:21}}{{level:}}　{{message:[sql-lint: unmatched-parentheses] Unmatched parentheses.}}
+{{file:./test/test-files/test.sql}}:{{startLine:25}}{{level:}}　{{message:[sql-lint: missing-where] DELETE statement missing WHERE clause.}}
+{{file:./test/test-files/test.sql}}:{{startLine:35}}{{level:}}　{{message:[sql-lint: odd-code-point] Unexpected code point.}}
 
 {{baseDir=/home/rocro}}
 {{lineOriginZero=false}}
 {{columnOriginZero=false}}
-{{levelMap= {" ":"error"} }}
+{{levelMap= {"":"error"} }}
