@@ -1,0 +1,8 @@
+{{file:./test/test-files/test.sql}}:{{startLine:21}} {{message:[sql-lint: unmatched-parentheses] Unmatched parentheses.}}
+{{file:./test/test-files/test.sql}}:{{startLine:25}} {{message:[sql-lint: missing-where] DELETE statement missing WHERE clause.}}
+{{file:./test/test-files/test.sql}}:{{startLine:35}} {{message:[sql-lint: odd-code-point] Unexpected code point.}}
+
+{{baseDir=/}}
+{{lineOriginZero=false}}
+{{columnOriginZero=false}}
+{{levelMap= {} }}

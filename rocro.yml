@@ -19,6 +19,8 @@ inspecode:
       reports:
         - from: dockerfilelint-task
           path: "/.reports/dockerfilelint.sarif"
+          format:
+            type: SARIF
       machine: {cpu: 0.75}
       thresholds: {num-issues: 2}
 
@@ -36,10 +38,12 @@ inspecode:
       reports:
         - from: hadolint-task
           path: "/.reports/hadolint.sarif"
+          format:
+            type: SARIF
       machine: {cpu: 0.75}
       thresholds: {num-issues: 16}
 
-    - name: sql-lint_SARIF
+    - name: sql-lint_example
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
       options:
@@ -48,11 +52,12 @@ inspecode:
       artifacts:
         - from: sqllint-task
           path: "/.reports/sql-lint.issues"
-        - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
       reports:
         - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
+          path: "/.reports/sql-lint.issues"
+          format:
+            type: example
+            path: "/inspecode-tasks-examples/sql-lint.issues"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
@@ -65,11 +70,12 @@ inspecode:
       artifacts:
         - from: yamllint-task
           path: "/.reports/yamllint.issues"
-        - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
       reports:
         - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
+          path: "/.reports/yamllint.issues"
+          format:
+            type: example
+            path: "/inspecode-tasks-examples/yamllint.issues"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
