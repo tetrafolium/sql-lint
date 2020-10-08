@@ -57,7 +57,7 @@ inspecode:
           path: "/.reports/sql-lint.issues"
           format:
             type: example
-            path: "/inspecode-tasks-examples/sql-lint.issues"
+            path: "inspecode-tasks-examples/sql-lint.issues"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
@@ -75,7 +75,7 @@ inspecode:
           path: "/.reports/yamllint.issues"
           format:
             type: example
-            path: "/inspecode-tasks-examples/yamllint.issues"
+            path: "inspecode-tasks-examples/yamllint.issues"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
