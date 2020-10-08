@@ -61,7 +61,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: yamllint_SARIF
+    - name: yamllint_example
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
