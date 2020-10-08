@@ -5,4 +5,4 @@
 {{baseDir=/}}
 {{lineOriginZero=false}}
 {{columnOriginZero=false}}
-{{levelMap= {} }}
+{{levelMap= {"":"error"} }}
