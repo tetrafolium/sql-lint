@@ -5,4 +5,5 @@
 {{baseDir=/home/rocro}}
 {{lineOriginZero=false}}
 {{columnOriginZero=false}}
-{{levelMap= {} }}
+{{levelMap= {"default":"error"} }}
+ 
