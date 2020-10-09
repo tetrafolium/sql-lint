@@ -52,6 +52,8 @@ inspecode:
       artifacts:
         - from: sqllint-task
           path: "/.reports/sql-lint.issues"
+        - from: sqllint-task
+          path: "/.reports/sql-lint.sarif"
       reports:
         - from: sqllint-task
           path: "/.reports/sql-lint.issues"
@@ -70,6 +72,8 @@ inspecode:
       artifacts:
         - from: yamllint-task
           path: "/.reports/yamllint.issues"
+        - from: yamllint-task
+          path: "/.reports/yamllint.sarif"
       reports:
         - from: yamllint-task
           path: "/.reports/yamllint.issues"
