@@ -43,7 +43,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 16}
 
-    - name: sql-lint_example_lf
+    - name: sql-lint_ex_lf
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
       options:
@@ -63,7 +63,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: sql-lint_example_crlf
+    - name: sql-lint_ex_crlf
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
       options:
@@ -78,7 +78,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: yamllint_example_lf
+    - name: yamllint_ex_lf
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
@@ -98,7 +98,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
-    - name: yamllint_example_crlf
+    - name: yamllint_ex_crlf
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
