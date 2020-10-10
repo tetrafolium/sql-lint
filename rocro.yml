@@ -43,7 +43,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 16}
 
-    - name: sql-lint_example
+    - name: sql-lint_example_lf
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
       options:
@@ -63,7 +63,22 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: yamllint_example
+    - name: sql-lint_example_crlf
+      type: docker-build
+      dockerfile: "rocro-sqllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.crlf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: yamllint_example_lf
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
@@ -80,6 +95,21 @@ inspecode:
           format:
             type: example
             path: "inspecode-tasks-examples/yamllint.issues"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_example_crlf
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.crlf"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
