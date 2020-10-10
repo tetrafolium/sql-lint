@@ -43,6 +43,26 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 16}
 
+    - name: sql-lint_ex_crlf
+      type: docker-build
+      dockerfile: "rocro-sqllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues"
+        - from: sqllint-task
+          path: "/.reports/sql-lint.sarif"
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.crlf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
     - name: sql-lint_ex_lf
       type: docker-build
       dockerfile: "rocro-sqllint.Dockerfile"
@@ -63,20 +83,25 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: sql-lint_ex_crlf
+    - name: yamllint_ex_crlf
       type: docker-build
-      dockerfile: "rocro-sqllint.Dockerfile"
+      dockerfile: "rocro-yamllint.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
+      artifacts:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues"
+        - from: yamllint-task
+          path: "/.reports/yamllint.sarif"
       reports:
-        - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues"
           format:
             type: example
-            path: "inspecode-tasks-examples/sql-lint.issues.crlf"
+            path: "inspecode-tasks-examples/yamllint.issues.crlf"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 9}
+      thresholds: {num-issues: 3}
 
     - name: yamllint_ex_lf
       type: docker-build
@@ -95,21 +120,6 @@ inspecode:
           format:
             type: example
             path: "inspecode-tasks-examples/yamllint.issues"
-      machine: {cpu: 0.75}
-      thresholds: {num-issues: 3}
-
-    - name: yamllint_ex_crlf
-      type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
-      options:
-        --build-arg:
-          OUTDIR=/.reports
-      reports:
-        - from: yamllint-task
-          path: "/.reports/yamllint.issues"
-          format:
-            type: example
-            path: "inspecode-tasks-examples/yamllint.issues.crlf"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
