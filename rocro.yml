@@ -163,7 +163,7 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues,dos"
+          path: "/.reports/yamllint.issues.dos"
       reports:
         - from: yamllint-task
           path: "/.reports/yamllint.issues.dos"
@@ -229,7 +229,7 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues,mac"
+          path: "/.reports/yamllint.issues.mac"
       reports:
         - from: yamllint-task
           path: "/.reports/yamllint.issues.mac"
@@ -295,7 +295,7 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues,unix"
+          path: "/.reports/yamllint.issues.unix"
       reports:
         - from: yamllint-task
           path: "/.reports/yamllint.issues.unix"
