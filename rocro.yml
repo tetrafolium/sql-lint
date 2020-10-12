@@ -157,7 +157,7 @@ inspecode:
 
     - name: yamllint_dos-dos
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -175,7 +175,7 @@ inspecode:
 
     - name: yamllint_dos-mac
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -191,7 +191,7 @@ inspecode:
 
     - name: yamllint_dos-unix
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -207,7 +207,7 @@ inspecode:
 
     - name: yamllint_mac-dos
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -223,7 +223,7 @@ inspecode:
 
     - name: yamllint_mac-mac
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -241,7 +241,7 @@ inspecode:
 
     - name: yamllint_mac-unix
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -257,7 +257,7 @@ inspecode:
 
     - name: yamllint_unix-dos
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -273,7 +273,7 @@ inspecode:
 
     - name: yamllint_unix-mac
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
@@ -289,7 +289,7 @@ inspecode:
 
     - name: yamllint_unix-unix
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-yamllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
