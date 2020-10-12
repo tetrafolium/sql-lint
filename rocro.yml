@@ -5,87 +5,157 @@ inspecode:
 
   tasks:
 
-    - name: sql-lint_ex_cr
+    - name: sql-lint_dos-dos
       type: docker-build
-      dockerfile: "rocro-sqllint.Dockerfile"
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
       artifacts:
         - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
-        - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
+          path: "/.reports/sql-lint.issues.dos"
       reports:
         - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
-          format:
-            type: example
-            path: "inspecode-tasks-examples/sql-lint.issues.cr"
-      machine: {cpu: 0.75}
-      thresholds: {num-issues: 9}
-
-    - name: sql-lint_ex_crlf
-      type: docker-build
-      dockerfile: "rocro-sqllint.Dockerfile"
-      options:
-        --build-arg:
-          OUTDIR=/.reports
-      artifacts:
-        - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
-        - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
-      reports:
-        - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
+          path: "/.reports/sql-lint.issues.dos"
           format:
             type: example
             path: "inspecode-tasks-examples/sql-lint.issues.crlf"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: sql-lint_ex_lf
+    - name: sql-lint_dos-mac
       type: docker-build
-      dockerfile: "rocro-sqllint.Dockerfile"
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
       artifacts:
-        - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
-        - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
       reports:
         - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
+          path: "/.reports/sql-lint.issues.dos"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: sql-lint_dos-unix
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.dos"
           format:
             type: example
             path: "inspecode-tasks-examples/sql-lint.issues.lf"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
-    - name: yamllint_ex_cr
+    - name: sql-lint_mac-dos
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
       options:
         --build-arg:
           OUTDIR=/.reports
       artifacts:
-        - from: yamllint-task
-          path: "/.reports/yamllint.issues"
-        - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
       reports:
-        - from: yamllint-task
-          path: "/.reports/yamllint.issues"
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.mac"
           format:
             type: example
-            path: "inspecode-tasks-examples/yamllint.issues.cr"
+            path: "inspecode-tasks-examples/sql-lint.issues.crlf"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 3}
+      thresholds: {num-issues: 9}
 
-    - name: yamllint_ex_crlf
+    - name: sql-lint_mac-mac
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.mac"
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.mac"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: sql-lint_mac-unix
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.mac"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.lf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: sql-lint_unix-dos
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.unix"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.crlf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: sql-lint_unix-mac
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.unix"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: sql-lint_unix-unix
+      type: docker-build
+      dockerfile: "rocro-sqllint-eol.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.unix"
+      reports:
+        - from: sqllint-task
+          path: "/.reports/sql-lint.issues.unix"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/sql-lint.issues.lf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 9}
+
+    - name: yamllint_dos-dos
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
@@ -93,19 +163,65 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues"
-        - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
+          path: "/.reports/yamllint.issues,dos"
       reports:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues"
+          path: "/.reports/yamllint.issues.dos"
           format:
             type: example
             path: "inspecode-tasks-examples/yamllint.issues.crlf"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
 
-    - name: yamllint_ex_lf
+    - name: yamllint_dos-mac
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.dos"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_dos-unix
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.dos"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.lf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_mac-dos
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.mac"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.crlf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_mac-mac
       type: docker-build
       dockerfile: "rocro-yamllint.Dockerfile"
       options:
@@ -113,12 +229,76 @@ inspecode:
           OUTDIR=/.reports
       artifacts:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues"
-        - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
+          path: "/.reports/yamllint.issues,mac"
       reports:
         - from: yamllint-task
-          path: "/.reports/yamllint.issues"
+          path: "/.reports/yamllint.issues.mac"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_mac-unix
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.mac"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.lf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_unix-dos
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.unix"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.crlf"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_unix-mac
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.unix"
+          format:
+            type: example
+            path: "inspecode-tasks-examples/yamllint.issues.cr"
+      machine: {cpu: 0.75}
+      thresholds: {num-issues: 3}
+
+    - name: yamllint_unix-unix
+      type: docker-build
+      dockerfile: "rocro-yamllint.Dockerfile"
+      options:
+        --build-arg:
+          OUTDIR=/.reports
+      artifacts:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues,unix"
+      reports:
+        - from: yamllint-task
+          path: "/.reports/yamllint.issues.unix"
           format:
             type: example
             path: "inspecode-tasks-examples/yamllint.issues.lf"
