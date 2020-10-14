@@ -14,7 +14,7 @@ ENV REPODIR="/.src/${REPOPATH}"
 
 ARG OUTDIR
 ENV OUTDIR="${OUTDIR:-"/.reports"}"
-ENV OUTFILE="${OUTDIR}/${TOOLNAME}-issues"
+ENV OUTFILE="${OUTDIR}/${TOOLNAME}.issues"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
