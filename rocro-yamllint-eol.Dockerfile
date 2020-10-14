@@ -1,6 +1,6 @@
 FROM python:3-alpine AS yamllint-task
 
-### Install golang and ruby ...
+### Install ruby ...
 RUN apk add --update --no-cache ruby && \
     echo "+++ $(ruby --version)"
 
