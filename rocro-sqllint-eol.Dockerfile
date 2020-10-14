@@ -1,6 +1,6 @@
 FROM sandrokeil/typescript AS sqllint-task
 
-### Install golang ...
+### Install ruby ...
 RUN apk add --update --no-cache ruby && \
     echo "+++ $(ruby --version)"
 
@@ -8,11 +8,13 @@ RUN apk add --update --no-cache ruby && \
 RUN npm install -g sql-lint && \
     echo "+++ sql-lint .. $(sql-lint --version)"
 
-ENV REPOPATH="github.com/tetrafolium/sql-lint"
+ENV TOOLNAME="sql-lint"
+ENV REPOPATH="github.com/tetrafolium/${TOOLNAME}"
 ENV REPODIR="/.src/${REPOPATH}"
 
 ARG OUTDIR
 ENV OUTDIR="${OUTDIR:-"/.reports"}"
+ENV OUTFILE="${OUTDIR}/${TOOLNAME}-issues"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
@@ -20,10 +22,10 @@ WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
 RUN ( find . -type f -name '*.sql' -print0 | xargs -0 -n 1 sql-lint --format simple ) \
-        > "${OUTDIR}/sql-lint.issues.unix" || true
+        > "${OUTFILE}.unix" || true
 RUN ls -la "${OUTDIR}"
 
-### Convert EOL in output of sql-lint.
-RUN ruby -pe 'sub("\n", "\r\n")' < "${OUTDIR}/sql-lint.issues.unix" > "${OUTDIR}/sql-lint.issues.dos"
-RUN ruby -pe 'sub("\n", "\r")'   < "${OUTDIR}/sql-lint.issues.unix" > "${OUTDIR}/sql-lint.issues.mac"
+### Convert EOL in outfile.
+RUN ruby -pe 'sub("\n", "\r\n")' < "${OUTFILE}.unix" > "${OUTFILE}.dos"
+RUN ruby -pe 'sub("\n", "\r")'   < "${OUTFILE}.unix" > "${OUTFILE}.mac"
 RUN ls -la "${OUTDIR}"
