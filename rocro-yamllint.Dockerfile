@@ -1,4 +1,4 @@
-FROM python:3-alpine AS yamllint-task
+FROM python:alpine AS yamllint-task
 
 ### Install golang ...
 RUN apk add --update --no-cache go && \
@@ -25,7 +25,7 @@ ENV OUTDIR="${OUTDIR:-"/.reports"}"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
-WORKDIR "${REPODIR}"
+WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
 
 ### Run yamllint ...
 RUN yamllint -f parsable . > "${OUTDIR}/yamllint.issues" || true

@@ -1,4 +1,4 @@
-FROM sandrokeil/typescript AS sqllint-task
+FROM sandrokeil/typescript:latest AS sqllint-task
 
 ### Install golang ...
 RUN apk add --update --no-cache go && \
@@ -25,9 +25,10 @@ ENV OUTDIR="${OUTDIR:-"/.reports"}"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
-WORKDIR "${REPODIR}"
+WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
 
 ### Run sql-lint ...
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN ( find . -type f -name '*.sql' -print0 | xargs -0 -n 1 sql-lint --format simple ) \
         > "${OUTDIR}/sql-lint.issues" || true
 RUN ls -la "${OUTDIR}"

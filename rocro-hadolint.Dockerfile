@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine AS hadolint-task
+FROM golang:1-alpine AS hadolint-task
 
 ### Install tools ...
 RUN apk add --update --no-cache curl git
@@ -27,9 +27,10 @@ ENV OUTDIR="${OUTDIR:-"/.reports"}"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
-WORKDIR "${REPODIR}"
+WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
 
 ### Run hadolint ...
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN ( find . -type f -name '*Dockerfile*' -print0 | xargs -0 hadolint --format json ) \
         > "${OUTDIR}/hadolint.json" || true
 RUN ls -la "${OUTDIR}"

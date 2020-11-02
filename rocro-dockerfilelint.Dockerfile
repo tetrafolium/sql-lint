@@ -26,9 +26,10 @@ ENV OUTDIR="${OUTDIR:-"/.reports"}"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
-WORKDIR "${REPODIR}"
+WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
 
 ### Run dockerfilelint ...
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN ( find . -type f -name '*Dockerfile*' -print0 | xargs -0 dockerfilelint --output json ) \
         > "${OUTDIR}/dockerfilelint.json" || true
 RUN ls -la "${OUTDIR}"
