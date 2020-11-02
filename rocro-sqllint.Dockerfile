@@ -28,6 +28,7 @@ COPY . "${REPODIR}"
 WORKDIR "${REPODIR}"
 
 ### Run sql-lint ...
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN ( find . -type f -name '*.sql' -print0 | xargs -0 -n 1 sql-lint --format simple ) \
         > "${OUTDIR}/sql-lint.issues" || true
 RUN ls -la "${OUTDIR}"

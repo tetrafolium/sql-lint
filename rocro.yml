@@ -37,7 +37,7 @@ inspecode:
         - from: hadolint-task
           path: "/.reports/hadolint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 16}
+      thresholds: {num-issues: 13}
 
     - name: sql-lint
       type: docker-build
@@ -71,7 +71,7 @@ inspecode:
         - from: yamllint-task
           path: "/.reports/yamllint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 3}
+      thresholds: {num-issues: 4}
 
   tools:
 
