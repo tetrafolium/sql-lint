@@ -25,7 +25,8 @@ ENV OUTDIR="${OUTDIR:-"/.reports"}"
 
 RUN mkdir -p "${REPODIR}" "${OUTDIR}"
 COPY . "${REPODIR}"
-WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
+#WORKDIR "${REPODIR}"    # WORKDIR "/.go/src/${REPOPATH}"
+WORKDIR "${REPODIR}"
 
 ### Run yamllint ...
 RUN yamllint -f parsable . > "${OUTDIR}/yamllint.issues" || true
