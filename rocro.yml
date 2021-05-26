@@ -19,15 +19,15 @@ inspecode:
         --build-arg: [OUTDIR=/.reports]
       artifacts:
         downloads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/dockerfilelint.json"
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/dockerfilelint.sarif"
         uploads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/"
       reports:
-        - from: linter-stage
+        - stage: linter-stage
           path: "/.reports/dockerfilelint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 2}
@@ -40,15 +40,15 @@ inspecode:
         --build-arg: [OUTDIR=/.reports]
       artifacts:
         downloads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/hadolint.json"
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/hadolint.sarif"
         uploads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/"
       reports:
-        - from: linter-stage
+        - stage: linter-stage
           path: "/.reports/hadolint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 13}
@@ -61,15 +61,15 @@ inspecode:
         --build-arg: [OUTDIR=/.reports]
       artifacts:
         downloads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/sql-lint.issues"
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/sql-lint.sarif"
         uploads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/"
       reports:
-        - from: linter-stage
+        - stage: linter-stage
           path: "/.reports/sql-lint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
@@ -82,15 +82,15 @@ inspecode:
         --build-arg: [OUTDIR=/.reports]
       artifacts:
         downloads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/yamllint.issues"
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/yamllint.sarif"
         uploads:
-          - from: linter-stage
+          - stage: linter-stage
             path: "/.reports/"
       reports:
-        - from: linter-stage
+        - stage: linter-stage
           path: "/.reports/yamllint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 4}
