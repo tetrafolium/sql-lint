@@ -18,11 +18,6 @@ inspecode:
         --context: .
         --build-arg: [OUTDIR=/.reports]
       artifacts:
-        downloads:
-          - stage: linter-stage
-            path: "/.reports/dockerfilelint.json"
-          - stage: linter-stage
-            path: "/.reports/dockerfilelint.sarif"
         uploads:
           - stage: linter-stage
             path: "/.reports/"
@@ -39,11 +34,6 @@ inspecode:
         --context: .
         --build-arg: [OUTDIR=/.reports]
       artifacts:
-        downloads:
-          - stage: linter-stage
-            path: "/.reports/hadolint.json"
-          - stage: linter-stage
-            path: "/.reports/hadolint.sarif"
         uploads:
           - stage: linter-stage
             path: "/.reports/"
@@ -60,11 +50,6 @@ inspecode:
         --context: .
         --build-arg: [OUTDIR=/.reports]
       artifacts:
-        downloads:
-          - stage: linter-stage
-            path: "/.reports/sql-lint.issues"
-          - stage: linter-stage
-            path: "/.reports/sql-lint.sarif"
         uploads:
           - stage: linter-stage
             path: "/.reports/"
@@ -81,11 +66,6 @@ inspecode:
         --context: .
         --build-arg: [OUTDIR=/.reports]
       artifacts:
-        downloads:
-          - stage: linter-stage
-            path: "/.reports/yamllint.issues"
-          - stage: linter-stage
-            path: "/.reports/yamllint.sarif"
         uploads:
           - stage: linter-stage
             path: "/.reports/"
