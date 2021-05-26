@@ -7,74 +7,90 @@ inspecode:
 
   experimental:
     env:
-      GO111MODULE: on
+      GO111MODULE: auto
 
   tasks:
 
     - name: dockerfilelint
       type: docker-build
-      dockerfile: "rocro-dockerfilelint.Dockerfile"
+      dockerfile: '.rocro/dflint/Dockerfile'
       options:
-        --build-arg:
-          OUTDIR=/.reports
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
       artifacts:
-        - from: dockerfilelint-task
-          path: "/.reports/dockerfilelint.json"
-        - from: dockerfilelint-task
-          path: "/.reports/dockerfilelint.sarif"
+        downloads:
+          - from: linter-stage
+            path: "/.reports/dockerfilelint.json"
+          - from: linter-stage
+            path: "/.reports/dockerfilelint.sarif"
+        uploads:
+          - from: linter-stage
+            path: "/.reports/"
       reports:
-        - from: dockerfilelint-task
+        - from: linter-stage
           path: "/.reports/dockerfilelint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 2}
 
     - name: hadolint
       type: docker-build
-      dockerfile: "rocro-hadolint.Dockerfile"
+      dockerfile: '.rocro/hadolint/Dockerfile'
       options:
-        --build-arg:
-          OUTDIR=/.reports
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
       artifacts:
-        - from: hadolint-task
-          path: "/.reports/hadolint.json"
-        - from: hadolint-task
-          path: "/.reports/hadolint.sarif"
+        downloads:
+          - from: linter-stage
+            path: "/.reports/hadolint.json"
+          - from: linter-stage
+            path: "/.reports/hadolint.sarif"
+        uploads:
+          - from: linter-stage
+            path: "/.reports/"
       reports:
-        - from: hadolint-task
+        - from: linter-stage
           path: "/.reports/hadolint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 13}
 
     - name: sql-lint
       type: docker-build
-      dockerfile: "rocro-sqllint.Dockerfile"
+      dockerfile: '.rocro/sqllint/Dockerfile'
       options:
-        --build-arg:
-          OUTDIR=/.reports
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
       artifacts:
-        - from: sqllint-task
-          path: "/.reports/sql-lint.issues"
-        - from: sqllint-task
-          path: "/.reports/sql-lint.sarif"
+        downloads:
+          - from: linter-stage
+            path: "/.reports/sql-lint.issues"
+          - from: linter-stage
+            path: "/.reports/sql-lint.sarif"
+        uploads:
+          - from: linter-stage
+            path: "/.reports/"
       reports:
-        - from: sqllint-task
+        - from: linter-stage
           path: "/.reports/sql-lint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 9}
 
     - name: yamllint
       type: docker-build
-      dockerfile: "rocro-yamllint.Dockerfile"
+      dockerfile: '.rocro/yamllint/Dockerfile'
       options:
-        --build-arg:
-          OUTDIR=/.reports
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
       artifacts:
-        - from: yamllint-task
-          path: "/.reports/yamllint.issues"
-        - from: yamllint-task
-          path: "/.reports/yamllint.sarif"
+        downloads:
+          - from: linter-stage
+            path: "/.reports/yamllint.issues"
+          - from: linter-stage
+            path: "/.reports/yamllint.sarif"
+        uploads:
+          - from: linter-stage
+            path: "/.reports/"
       reports:
-        - from: yamllint-task
+        - from: linter-stage
           path: "/.reports/yamllint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 4}

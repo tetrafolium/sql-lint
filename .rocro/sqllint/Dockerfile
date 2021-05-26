@@ -1,4 +1,4 @@
-FROM sandrokeil/typescript AS sqllint-task
+FROM sandrokeil/typescript AS linter-stage
 
 ### Install golang ...
 RUN apk add --update --no-cache go && \
