@@ -57,7 +57,7 @@ inspecode:
         - stage: linter-stage
           path: "/.reports/sql-lint.sarif"
       machine: {cpu: 0.75}
-      thresholds: {num-issues: 9}
+      thresholds: {num-issues: 14}
 
     - name: yamllint
       type: docker-build
