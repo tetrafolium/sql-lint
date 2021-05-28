@@ -1,12 +1,12 @@
-import { Query } from "../../reader/query";
-import { ILexer } from "../interface";
-import { cleanUnquotedIdentifier } from "../lexer";
-import { Keyword } from "../../syntax/keywords";
-import { Types } from "../types";
-import { Token } from "../token";
+import {Query} from "../../reader/query";
+import {Keyword} from "../../syntax/keywords";
+import {ILexer} from "../interface";
+import {cleanUnquotedIdentifier} from "../lexer";
+import {Token} from "../token";
+import {Types} from "../types";
 
 class Truncate implements ILexer {
-  public options: string[] = ["table"];
+  public options: string[] = [ "table" ];
 
   public tokenise(query: Query): Query {
     let lastToken = "";
@@ -21,8 +21,7 @@ class Truncate implements ILexer {
 
           if (item.length > 0) {
             line.tokens.push(
-              new Token(Types.Option, cleanUnquotedIdentifier(item))
-            );
+                new Token(Types.Option, cleanUnquotedIdentifier(item)));
           }
         }
         lastToken = item;
@@ -33,4 +32,4 @@ class Truncate implements ILexer {
   }
 }
 
-export { Truncate };
+export {Truncate};

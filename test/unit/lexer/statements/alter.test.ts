@@ -1,16 +1,16 @@
-import { Alter } from "../../../../src/lexer/statements/alter";
-import { putContentIntoLines } from "../../../../src/reader/reader";
-import { Token } from "../../../../src/lexer/token";
+import {Alter} from "../../../../src/lexer/statements/alter";
+import {Token} from "../../../../src/lexer/token";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
   [
     "ALTER ;",
     {
-      lines: [
+      lines : [
         {
-          content: "ALTER ;",
-          num: 1,
-          tokens: [new Token("keyword", "alter")],
+          content : "ALTER ;",
+          num : 1,
+          tokens : [ new Token("keyword", "alter") ],
         },
       ],
     },
@@ -18,11 +18,12 @@ test.each([
   [
     "ALTER TABLE ;",
     {
-      lines: [
+      lines : [
         {
-          content: "ALTER TABLE ;",
-          num: 1,
-          tokens: [new Token("keyword", "alter"), new Token("option", "table")],
+          content : "ALTER TABLE ;",
+          num : 1,
+          tokens :
+              [ new Token("keyword", "alter"), new Token("option", "table") ],
         },
       ],
     },

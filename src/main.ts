@@ -4,45 +4,36 @@ import * as program from "commander";
 import * as fs from "fs";
 import * as process from "process";
 
-import { CheckerRunner } from "./checker/checkerRunner";
-import { Database } from "./database";
-import { FormatterFactory } from "./formatter/formatterFactory";
-import { Printer } from "./printer";
-import { Query } from "./reader/query";
-import { file, getConfiguration } from "./config";
-import { getQueryFromFile, getQueryFromLine } from "./reader/reader";
-import { version } from "../package.json";
-import { Fixer } from "./fixer";
-import { findByExtension } from "./file";
+import {CheckerRunner} from "./checker/checkerRunner";
+import {Database} from "./database";
+import {FormatterFactory} from "./formatter/formatterFactory";
+import {Printer} from "./printer";
+import {Query} from "./reader/query";
+import {file, getConfiguration} from "./config";
+import {getQueryFromFile, getQueryFromLine} from "./reader/reader";
+import {version} from "../package.json";
+import {Fixer} from "./fixer";
+import {findByExtension} from "./file";
 
-function increaseVerbosity(v: any, total: any) {
-  return total + 1;
-}
+function increaseVerbosity(v: any, total: any) { return total + 1; }
 
-program
-  .version(version)
-  .option("--fix [string]", "The .sql string to fix")
-  .option(
-    "-d, --driver <string>",
-    "The driver to use, must be one of ['mysql', 'postgres']"
-  )
-  .option(
-    "-v, --verbose",
-    "Brings back information on the what it's linting and the tokens generated",
-    increaseVerbosity,
-    0
-  )
-  .option(
-    "--format <string>",
-    "The format of the output, can be one of ['simple', 'json']",
-    "simple"
-  )
-  .option("--host <string>", "The host for the connection")
-  .option("--user <string>", "The user for the connection")
-  .option("--password <string>", "The password for the connection")
-  .option("--port <string>", "The port for the connection")
-  .option("--config <string>", "The path to the configuration file")
-  .parse(process.argv);
+program.version(version)
+    .option("--fix [string]", "The .sql string to fix")
+    .option("-d, --driver <string>",
+            "The driver to use, must be one of ['mysql', 'postgres']")
+    .option(
+        "-v, --verbose",
+        "Brings back information on the what it's linting and the tokens generated",
+        increaseVerbosity, 0)
+    .option("--format <string>",
+            "The format of the output, can be one of ['simple', 'json']",
+            "simple")
+    .option("--host <string>", "The host for the connection")
+    .option("--user <string>", "The user for the connection")
+    .option("--password <string>", "The password for the connection")
+    .option("--port <string>", "The port for the connection")
+    .option("--config <string>", "The path to the configuration file")
+    .parse(process.argv);
 
 let queries: Query[] = [];
 let prefix: string = "";
@@ -93,13 +84,13 @@ if (configuration === null) {
 }
 
 if (program.host || configuration?.host) {
-  db = new Database(
-    program.driver || configuration?.driver || "mysql",
-    program.host || configuration?.host || "localhost",
-    program.user || configuration?.user || "root", // bad practice but unfortunately common, make it easier for the user
-    program.password || configuration?.password,
-    program.port || configuration?.port || "3306"
-  );
+  db = new Database(program.driver || configuration?.driver || "mysql",
+                    program.host || configuration?.host || "localhost",
+                    program.user || configuration?.user ||
+                        "root", // bad practice but unfortunately common, make
+                                // it easier for the user
+                    program.password || configuration?.password,
+                    program.port || configuration?.port || "3306");
 }
 
 if (programFile) {

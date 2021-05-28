@@ -1,6 +1,8 @@
-import { InvalidAlterOption } from "../../../../src/checker/checks/invalidAlterOption";
-import { tokenise } from "../../../../src/lexer/lexer";
-import { putContentIntoLines } from "../../../../src/reader/reader";
+import {
+  InvalidAlterOption
+} from "../../../../src/checker/checks/invalidAlterOption";
+import {tokenise} from "../../../../src/lexer/lexer";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test("It is applied to the correct category", () => {
   const checker = new InvalidAlterOption();
@@ -10,7 +12,7 @@ test("It is applied to the correct category", () => {
 });
 
 test.each([
-  ["ALTER TABLE person;", ""],
+  [ "ALTER TABLE person;", "" ],
   [
     "ALTER JIBBERISH person;",
     /Option 'jibberish' is not a valid option, must be one of .*/,

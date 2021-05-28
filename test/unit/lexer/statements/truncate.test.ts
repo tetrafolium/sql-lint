@@ -1,16 +1,16 @@
-import { Truncate } from "../../../../src/lexer/statements/truncate";
-import { putContentIntoLines } from "../../../../src/reader/reader";
-import { Token } from "../../../../src/lexer/token";
+import {Truncate} from "../../../../src/lexer/statements/truncate";
+import {Token} from "../../../../src/lexer/token";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
   [
     "TRUNCATE ;",
     {
-      lines: [
+      lines : [
         {
-          content: "TRUNCATE ;",
-          num: 1,
-          tokens: [new Token("keyword", "truncate")],
+          content : "TRUNCATE ;",
+          num : 1,
+          tokens : [ new Token("keyword", "truncate") ],
         },
       ],
     },
@@ -18,11 +18,11 @@ test.each([
   [
     "TRUNCATE TABLE ;",
     {
-      lines: [
+      lines : [
         {
-          content: "TRUNCATE TABLE ;",
-          num: 1,
-          tokens: [
+          content : "TRUNCATE TABLE ;",
+          num : 1,
+          tokens : [
             new Token("keyword", "truncate"),
             new Token("option", "table"),
           ],

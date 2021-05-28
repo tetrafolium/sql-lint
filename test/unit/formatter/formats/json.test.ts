@@ -1,5 +1,5 @@
-import { JsonFormat } from "../../../../src/formatter/formats/json";
-import { CheckerResult } from "../../../../src/checker/checkerResult";
+import {CheckerResult} from "../../../../src/checker/checkerResult";
+import {JsonFormat} from "../../../../src/formatter/formats/json";
 
 test.each([
   [
@@ -20,11 +20,9 @@ test.each([
     '{"source":"test-more","error":"some content","line":1,"additionalInformation":""}',
     0,
   ],
-])(
-  "The format returns the message in the correct format and additionalInformation if verbosity exists",
-  (prefix, result, expected, verbosity) => {
-    const format = new JsonFormat();
-    const actual = format.getMessage(prefix, result, verbosity);
-    expect(actual).toEqual(expected);
-  }
-);
+])("The format returns the message in the correct format and additionalInformation if verbosity exists",
+   (prefix, result, expected, verbosity) => {
+     const format = new JsonFormat();
+     const actual = format.getMessage(prefix, result, verbosity);
+     expect(actual).toEqual(expected);
+   });

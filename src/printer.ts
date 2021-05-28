@@ -1,7 +1,7 @@
-import { IChecker } from "./checker/interface";
-import { Query } from "./reader/query";
-import { IFormat } from "./formatter/interface";
-import { Fixer } from "./fixer";
+import {IChecker} from "./checker/interface";
+import {Fixer} from "./fixer";
+import {IFormat} from "./formatter/interface";
+import {Query} from "./reader/query";
 
 class Printer {
   public verbosity: number;
@@ -11,11 +11,8 @@ class Printer {
     this.verbosity = verbosity;
     this.format = format;
   }
-  public printCheck(
-    checker: IChecker | undefined,
-    tokenised: Query,
-    prefix: string
-  ) {
+  public printCheck(checker: IChecker|undefined, tokenised: Query,
+                    prefix: string) {
     /**
      * If the checker is undefined, we make the assumption
      * that the check was specified in the 'ignore-errors'
@@ -52,14 +49,14 @@ class Printer {
 
   public warnAboutUncategoriseableQuery(content: string) {
     const title = "Unable to lint query";
-    const url = encodeURI(
-      `https://github.com/joereynolds/sql-lint/issues/new?title=${title}&body=${content}`
-    );
+    const url =
+        encodeURI(`https://github.com/joereynolds/sql-lint/issues/new?title=${
+            title}&body=${content}`);
 
     console.log(
-      `sql-lint was unable to lint the following query "${content}".` +
-        `This could be a bug with sql-lint. Visit this URL to create a bug report: ${url}`
-    );
+        `sql-lint was unable to lint the following query "${content}".` +
+        `This could be a bug with sql-lint. Visit this URL to create a bug report: ${
+            url}`);
   }
 
   public warnAboutFileNotFound(file: string) {
@@ -69,13 +66,12 @@ class Printer {
   public warnAboutNoConfiguration(file: string) {
     if (this.verbosity) {
       console.log(
-        `Can't open file ${file}. Does it exist?` +
+          `Can't open file ${file}. Does it exist?` +
           "\nA configuration file will enable errors from your DB server and give better error reporting." +
           "\nRead more here: https://sql-lint.readthedocs.io/en/latest/files/configuration.html" +
-          "\n"
-      );
+          "\n");
     }
   }
 }
 
-export { Printer };
+export {Printer};
