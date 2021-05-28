@@ -1,16 +1,17 @@
-import {Query} from "../reader/query";
-import {Keyword} from "../syntax/keywords";
-import {StatementFactory} from "./statementFactory";
+import { Query } from "../reader/query";
+import { Keyword } from "../syntax/keywords";
+import { StatementFactory } from "./statementFactory";
 
 function categorise(query: string) {
   query = query.trim().toLowerCase();
 
   // Cast the Keyword enum so we can to lookups on it without TypeScript
   // complaining.
-  const keywordLookup: {[keywordName: string]: string} = Keyword as any;
+  const keywordLookup: { [keywordName: string]: string } = Keyword as any;
 
-  const result = Object.keys(Keyword).find(
-      (keyword) => query.startsWith(keywordLookup[keyword]));
+  const result = Object.keys(Keyword).find((keyword) =>
+    query.startsWith(keywordLookup[keyword])
+  );
 
   if (result) {
     return keywordLookup[result];
@@ -59,17 +60,17 @@ function tokenise(query: Query): Query {
 function extractTableReference(tableReference: string) {
   const references = tableReference.split(".");
   const extractedReferences: any = {
-    3 : {
-      database : references[0],
-      table : references[1],
-      column : references[2],
+    3: {
+      database: references[0],
+      table: references[1],
+      column: references[2],
     },
-    2 : {
-      database : references[0],
-      table : references[1],
+    2: {
+      database: references[0],
+      table: references[1],
     },
-    1 : {
-      table : references[0],
+    1: {
+      table: references[0],
     },
   };
 
@@ -85,4 +86,4 @@ function cleanUnquotedIdentifier(identifier: string) {
   return identifier.replace(/([^a-z0-9_*.]+)/gi, "");
 }
 
-export {categorise, tokenise, extractTableReference, cleanUnquotedIdentifier};
+export { categorise, tokenise, extractTableReference, cleanUnquotedIdentifier };

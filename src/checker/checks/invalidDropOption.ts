@@ -8,14 +8,14 @@
  *   DROP TABLE test;
  */
 
-import {Drop} from "../../barrel/statements";
-import {IChecker} from "../interface";
+import { Drop } from "../../barrel/statements";
+import { IChecker } from "../interface";
 
-import {InvalidOption} from "./invalidOption";
+import { InvalidOption } from "./invalidOption";
 
 class InvalidDropOption extends InvalidOption implements IChecker {
   public checker = new Drop();
-  public appliesTo = [ "drop" ];
+  public appliesTo = ["drop"];
 }
 
-export {InvalidDropOption};
+export { InvalidDropOption };

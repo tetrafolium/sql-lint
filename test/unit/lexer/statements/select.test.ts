@@ -1,16 +1,16 @@
-import {Select} from "../../../../src/lexer/statements/select";
-import {Token} from "../../../../src/lexer/token";
-import {putContentIntoLines} from "../../../../src/reader/reader";
+import { Select } from "../../../../src/lexer/statements/select";
+import { Token } from "../../../../src/lexer/token";
+import { putContentIntoLines } from "../../../../src/reader/reader";
 
 test.each([
   [
     "SELECT * FROM person;",
     {
-      lines : [
+      lines: [
         {
-          content : "SELECT * FROM person;",
-          num : 1,
-          tokens : [
+          content: "SELECT * FROM person;",
+          num: 1,
+          tokens: [
             new Token("keyword", "select"),
             new Token("table_reference", "*"),
             new Token("keyword", "from"),
@@ -24,11 +24,11 @@ test.each([
     "SELECT last_name FROM person;",
 
     {
-      lines : [
+      lines: [
         {
-          content : "SELECT last_name FROM person;",
-          num : 1,
-          tokens : [
+          content: "SELECT last_name FROM person;",
+          num: 1,
+          tokens: [
             new Token("keyword", "select"),
             new Token("table_reference", "last_name"),
             new Token("keyword", "from"),
@@ -42,11 +42,11 @@ test.each([
     "SELECT * FROM person LIMIT 73;",
 
     {
-      lines : [
+      lines: [
         {
-          content : "SELECT * FROM person LIMIT 73;",
-          num : 1,
-          tokens : [
+          content: "SELECT * FROM person LIMIT 73;",
+          num: 1,
+          tokens: [
             new Token("keyword", "select"),
             new Token("table_reference", "*"),
             new Token("keyword", "from"),
@@ -62,11 +62,11 @@ test.each([
     "SELECT * FROM person WHERE name = 'test';",
 
     {
-      lines : [
+      lines: [
         {
-          content : "SELECT * FROM person WHERE name = 'test';",
-          num : 1,
-          tokens : [
+          content: "SELECT * FROM person WHERE name = 'test';",
+          num: 1,
+          tokens: [
             new Token("keyword", "select"),
             new Token("table_reference", "*"),
             new Token("keyword", "from"),
