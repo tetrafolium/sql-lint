@@ -31,7 +31,7 @@ WORKDIR "${REPODIR}"
 RUN ln -s "${REPODIR}/$(basename "${TOOLPATH}")" "${TOOLDIR}"
 
 ### Run hadolint ...
-#SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN ( find . -type f -name '*Dockerfile*' -print0 | xargs -0 hadolint --format json ) \
         > "${OUTDIR}/hadolint.json" || true
 RUN ls -la "${OUTDIR}"
