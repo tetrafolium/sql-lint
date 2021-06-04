@@ -1,11 +1,9 @@
-import {
-  InvalidDropOption
-} from "../../../../src/checker/checks/invalidDropOption";
-import {tokenise} from "../../../../src/lexer/lexer";
-import {putContentIntoLines} from "../../../../src/reader/reader";
+import { InvalidDropOption } from "../../../../src/checker/checks/invalidDropOption";
+import { tokenise } from "../../../../src/lexer/lexer";
+import { putContentIntoLines } from "../../../../src/reader/reader";
 
 test.each([
-  [ "DROP TABLE person;", "" ],
+  ["DROP TABLE person;", ""],
   [
     "DROP JIBBERISH person;",
     /Option 'jibberish' is not a valid option, must be one of .*/,

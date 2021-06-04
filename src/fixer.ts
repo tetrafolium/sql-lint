@@ -1,8 +1,10 @@
-import {tokenise} from "./lexer/lexer";
-import {Query} from "./reader/query";
+import { tokenise } from "./lexer/lexer";
+import { Query } from "./reader/query";
 
 class Fixer {
-  public fix(query: Query) { return this.fixKeywords(query); }
+  public fix(query: Query) {
+    return this.fixKeywords(query);
+  }
 
   private fixKeywords(query: Query) {
     query = tokenise(query);
@@ -26,4 +28,4 @@ class Fixer {
   }
 }
 
-export {Fixer};
+export { Fixer };

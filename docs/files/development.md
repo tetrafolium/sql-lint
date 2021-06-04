@@ -23,7 +23,6 @@ This will hit the lexer which will categorise this as a `SELECT` statement which
 the `SELECT` lexer will then tokenise. The tokenised string is then
 passed through to every checker to look for any linting errors.
 
-
 ## Adding a check
 
 If you want to add your own check, read on. It's quite simple but also verbose.
@@ -33,9 +32,9 @@ This can probably be automated to make it WAY easier.
 Anyway, here are the steps.
 
 - Create a check under `src/checker/checks`
-    - The name of the class is also the name of the checker so name it well
+  - The name of the class is also the name of the checker so name it well
 - Add your check to `src/barrel/checks.ts`
-    - All checks live here so we can import them all conveniently
+  - All checks live here so we can import them all conveniently
 - Import your check in `src/checker/checkFactory.ts`
 - Add your check to the `checkMap` in `src/checker/checkFactory.ts`
 - Add it to the README.md so people know it's a thing
@@ -62,7 +61,7 @@ npm install -g sql-lint
 
 ## Using the Docker container
 
-First, make sure port `3306` is available locally.  (You can do this by
+First, make sure port `3306` is available locally. (You can do this by
 inspecting the output of `sudo lsof -i :3306` and `docker ps` and `kill`ing
 anything using that port) Now do:
 
@@ -70,7 +69,7 @@ anything using that port) Now do:
 docker-compose up --build -d --force-recreate
 ```
 
-At this point the container(s) will be up and ready to use.  You can login with
+At this point the container(s) will be up and ready to use. You can login with
 the following credentials: `mysql -u root -ppassword`.
 
 Here's an example of a query:
@@ -106,5 +105,4 @@ you will need the following:
 Once those prerequisites are met, you can edit the files and see them exactly
 how they would appear on readthedocs.
 
-
-installed. 
+installed.

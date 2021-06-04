@@ -1,9 +1,9 @@
-import {Query} from "../../reader/query";
-import {Keyword} from "../../syntax/keywords";
-import {ILexer} from "../interface";
-import {cleanUnquotedIdentifier} from "../lexer";
-import {Token} from "../token";
-import {Types} from "../types";
+import { Query } from "../../reader/query";
+import { Keyword } from "../../syntax/keywords";
+import { ILexer } from "../interface";
+import { cleanUnquotedIdentifier } from "../lexer";
+import { Token } from "../token";
+import { Types } from "../types";
 
 class Use implements ILexer {
   public options: string[] = [];
@@ -18,7 +18,8 @@ class Use implements ILexer {
 
           if (item.length > 0) {
             line.tokens.push(
-                new Token(Types.TableReference, cleanUnquotedIdentifier(item)));
+              new Token(Types.TableReference, cleanUnquotedIdentifier(item))
+            );
           }
         }
       });
@@ -28,4 +29,4 @@ class Use implements ILexer {
   }
 }
 
-export {Use};
+export { Use };

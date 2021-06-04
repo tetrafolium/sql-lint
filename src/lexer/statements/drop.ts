@@ -1,9 +1,9 @@
-import {Query} from "../../reader/query";
-import {Keyword} from "../../syntax/keywords";
-import {ILexer} from "../interface";
-import {cleanUnquotedIdentifier} from "../lexer";
-import {Token} from "../token";
-import {Types} from "../types";
+import { Query } from "../../reader/query";
+import { Keyword } from "../../syntax/keywords";
+import { ILexer } from "../interface";
+import { cleanUnquotedIdentifier } from "../lexer";
+import { Token } from "../token";
+import { Types } from "../types";
 
 class Drop implements ILexer {
   public options: string[] = [
@@ -34,7 +34,8 @@ class Drop implements ILexer {
 
           if (item.length > 0) {
             line.tokens.push(
-                new Token(Types.Option, cleanUnquotedIdentifier(item)));
+              new Token(Types.Option, cleanUnquotedIdentifier(item))
+            );
           }
         }
         lastToken = item;
@@ -45,4 +46,4 @@ class Drop implements ILexer {
   }
 }
 
-export {Drop};
+export { Drop };

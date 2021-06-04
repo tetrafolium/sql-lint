@@ -13,6 +13,7 @@ more cases and will catch things that `sql-lint` does not.
 Shown when a query has an unbalanced amount of parentheses.
 
 #### Example output
+
 ```
 test/test-files//test.sql:16 [sql-lint: unmatched-parentheses] Unmatched parentheses.
 ```
@@ -69,12 +70,11 @@ test/test-files/test.sql:28 [sql-lint: invalid-alter-option] Option 'mlady' is n
 
 ### odd-code-point
 
-Shown when there are unsupported/unusual* code points in your code.
+Shown when there are unsupported/unusual\* code points in your code.
 
-*<small>This check came about whilst working Microsoft Excel. Microsoft likes to
+\*<small>This check came about whilst working Microsoft Excel. Microsoft likes to
 add a lot of zany characters which can subtly break your data without you
 realising.</small>
-
 
 #### Example output
 
@@ -95,7 +95,6 @@ test/test-files//test.sql:32 [sql-lint: invalid-limit-quantifier] Argument 'test
 ### hungarian-notation
 
 Shown when the string `sp_` or `tbl_` is present in the query.
-
 
 #### Example output
 

@@ -8,4 +8,3 @@ experience.
 `sql-lint` supports Mac, Linux, and Windows.
 
 If you prefer, you can do `npm install sql-lint`.
-

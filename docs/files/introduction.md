@@ -10,7 +10,7 @@ these errors are more verbose and specific than those coming from an SQL server.
 Here's a small excerpt of its use:
 
 ```
-: sql-lint test/test-files//test.sql 
+: sql-lint test/test-files//test.sql
 test/test-files//test.sql:16 [sql-lint: unmatched-parentheses] Unmatched parentheses.
 test/test-files//test.sql:20 [sql-lint: missing-where] DELETE statement missing WHERE clause.
 test/test-files//test.sql:22 [sql-lint: invalid-drop-option] Option 'thing' is not a valid option, must be one of '["database","event","function","index","logfile","procedure","schema","server","table","view","tablespace","trigger"]'.
@@ -22,7 +22,6 @@ test/test-files//test.sql:39 [ER_NO_SUCH_TABLE] Table 'symfony.dont_exist' doesn
 ```
 
 ## Usage
-
 
 `sql-lint` is used from the command line in several ways.
 
@@ -42,7 +41,7 @@ sql-lint test-file.sql
 
 ### -V --version
 
-The version of `sql-lint`. 
+The version of `sql-lint`.
 Useful for bug reports and confirming what features are available to you.
 
 ```
@@ -82,13 +81,13 @@ Default is `simple`.
 
 The output format of `sql-lint`.
 
- `simple` is the most user friendly and human readable. You won't usually change
- the format unless you have a reason to.
+`simple` is the most user friendly and human readable. You won't usually change
+the format unless you have a reason to.
 
- ```
- echo 'DELETE FROM person;' | sql-lint
+```
+echo 'DELETE FROM person;' | sql-lint
 > stdin:1 [sql-lint: missing-where] DELETE statement missing WHERE clause.
- ```
+```
 
 `json` can be used if you wish. Usually this is done for editor
 integration or for consumption via some other service.
@@ -114,7 +113,7 @@ The user for the connection.
 
 The password for the connection.
 
-### --port 
+### --port
 
 Default is `3306`.
 
