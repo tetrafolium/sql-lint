@@ -1,7 +1,7 @@
-import { Query } from "../../reader/query";
-import { CheckerResult } from "../checkerResult";
-import { IChecker } from "../interface";
-import { Check } from "../check";
+import {Query} from "../../reader/query";
+import {Check} from "../check";
+import {CheckerResult} from "../checkerResult";
+import {IChecker} from "../interface";
 
 class HungarianNotation extends Check implements IChecker {
   public message: string = "Hungarian notation present in query";
@@ -19,19 +19,14 @@ class HungarianNotation extends Check implements IChecker {
 
   public check(query: Query): CheckerResult {
     this.getName();
-    if (
-      query.getContent().toLowerCase().includes("sp_") ||
-      query.getContent().toLowerCase().includes("tbl_")
-    ) {
+    if (query.getContent().toLowerCase().includes("sp_") ||
+        query.getContent().toLowerCase().includes("tbl_")) {
       const lineNumber = query.lines[0].num;
-      return new CheckerResult(
-        lineNumber,
-        this.prefix + this.message,
-        this.additionalInformation
-      );
+      return new CheckerResult(lineNumber, this.prefix + this.message,
+                               this.additionalInformation);
     }
     return new CheckerResult(0, "");
   }
 }
 
-export { HungarianNotation };
+export {HungarianNotation};

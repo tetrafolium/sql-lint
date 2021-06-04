@@ -1,4 +1,4 @@
-import { Query } from "../reader/query";
+import {Query} from "../reader/query";
 
 interface IChecker {
   message: string;
@@ -8,4 +8,4 @@ interface IChecker {
   check(query: Query): any;
 }
 
-export { IChecker };
+export {IChecker};

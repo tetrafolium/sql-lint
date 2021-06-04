@@ -1,21 +1,21 @@
-import { CheckFactory } from "../../../src/checker/checkFactory";
 import {
+  DatabaseNotFound,
   InvalidAlterOption,
   InvalidCreateOption,
-  MissingWhere,
   InvalidDropOption,
+  InvalidTruncateOption,
+  MissingWhere,
   MySqlError,
   OddCodePoint,
   TableNotFound,
   UnmatchedParentheses,
-  InvalidTruncateOption,
-  DatabaseNotFound,
 } from "../../../src/barrel/checks";
+import {CheckFactory} from "../../../src/checker/checkFactory";
 
 test.each([
-  ["missingWhere", MissingWhere],
-  ["mySqlError", MySqlError],
-  ["oddCodePoint", OddCodePoint],
+  [ "missingWhere", MissingWhere ],
+  [ "mySqlError", MySqlError ],
+  [ "oddCodePoint", OddCodePoint ],
 ])("The CheckFactory builds the correct check", (format: string, expected) => {
   const factory = new CheckFactory();
   const actual = factory.build(format);
