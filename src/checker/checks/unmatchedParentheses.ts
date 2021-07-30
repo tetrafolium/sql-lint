@@ -1,13 +1,13 @@
-import {Query} from "../../reader/query";
-import {Check} from "../check";
-import {CheckerResult} from "../checkerResult";
-import {IChecker} from "../interface";
+import { Query } from "../../reader/query";
+import { Check } from "../check";
+import { CheckerResult } from "../checkerResult";
+import { IChecker } from "../interface";
 
 class UnmatchedParentheses extends Check implements IChecker {
   public message = "Unmatched parentheses.";
   public requiresConnection = false;
   public additionalInformation = "";
-  public appliesTo = [ "select", "create", "update", "drop", "insert" ];
+  public appliesTo = ["select", "create", "update", "drop", "insert"];
   public check(query: Query): CheckerResult {
     const content = query.getContent();
 
@@ -22,4 +22,4 @@ class UnmatchedParentheses extends Check implements IChecker {
   }
 }
 
-export {UnmatchedParentheses};
+export { UnmatchedParentheses };

@@ -1,9 +1,9 @@
 import * as fs from "fs";
 
-import {Keyword} from "../syntax/keywords";
+import { Keyword } from "../syntax/keywords";
 
-import {Line} from "./line";
-import {Query} from "./query";
+import { Line } from "./line";
+import { Query } from "./query";
 
 /**
  * Grabs the querie(s) from the --file flag
@@ -18,7 +18,7 @@ export function putContentIntoLines(contents: string): Query[] {
   const queriesFromFile: Query[] = [];
   let currentQueryContent: string = "";
   let query = new Query();
-  const skipChars = [ "", Keyword.Newline, Keyword.WindowsNewline ];
+  const skipChars = ["", Keyword.Newline, Keyword.WindowsNewline];
 
   contents = stripComments(contents);
 
@@ -57,9 +57,11 @@ function stripComments(content: string): string {
   const contentInLines = content.split(Keyword.Newline);
 
   for (let i = 0; i < contentInLines.length; i++) {
-    if (contentInLines[i].startsWith(Keyword.CommentDash) ||
-        contentInLines[i].startsWith(Keyword.CommentHash) ||
-        contentInLines[i].startsWith(Keyword.CommentMultiLineStart)) {
+    if (
+      contentInLines[i].startsWith(Keyword.CommentDash) ||
+      contentInLines[i].startsWith(Keyword.CommentHash) ||
+      contentInLines[i].startsWith(Keyword.CommentMultiLineStart)
+    ) {
       contentInLines[i] = "";
     }
   }
