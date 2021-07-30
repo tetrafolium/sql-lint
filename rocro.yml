@@ -84,6 +84,9 @@ inspecode:
     # fortify:
     #   thresholds: {num-issues: 999}
 
+    fossid:
+      thresholds: {num-issues: 999}
+
     fossology:
       thresholds: {num-issues: 27}
 
