@@ -1,17 +1,18 @@
-import { Printer } from "../../src/printer";
-import { NullChecker } from "../../src/checker/nullChecker";
-import { Query } from "../../src/reader/query";
-import { SimpleFormat } from "../../src/formatter/formats/simple";
+import {NullChecker} from "../../src/checker/nullChecker";
+import {SimpleFormat} from "../../src/formatter/formats/simple";
+import {Printer} from "../../src/printer";
+import {Query} from "../../src/reader/query";
 
-test("It gets the queries content when the verbose option is set above 1", () => {
-  const format = new SimpleFormat();
-  const checker = new NullChecker();
-  const query = new Query();
-  const getContentFn = (Query.prototype.getContent = jest.fn());
-  const printer = new Printer(2, format);
-  printer.printCheck(checker, query, "");
-  expect(getContentFn).toHaveBeenCalledTimes(1);
-});
+test("It gets the queries content when the verbose option is set above 1",
+     () => {
+       const format = new SimpleFormat();
+       const checker = new NullChecker();
+       const query = new Query();
+       const getContentFn = (Query.prototype.getContent = jest.fn());
+       const printer = new Printer(2, format);
+       printer.printCheck(checker, query, "");
+       expect(getContentFn).toHaveBeenCalledTimes(1);
+     });
 
 test("it calls console.log to output a fixed query", () => {
   const console = jest.spyOn(global.console, "log");
@@ -21,7 +22,7 @@ test("it calls console.log to output a fixed query", () => {
   const getContentFn = (Query.prototype.getContent = jest.fn());
   getContentFn.mockReturnValue("delete from person;");
   const printer = new Printer(2, format);
-  printer.printFix([query]);
+  printer.printFix([ query ]);
   expect(console).toHaveBeenCalled();
 });
 
@@ -48,6 +49,6 @@ test("It does not console log if the checker is undefined", () => {
   printer.printCheck(undefined, query, "");
 
   // @ts-ignore
-  global.console = { log: jest.fn() };
+  global.console = {log : jest.fn()};
   expect(console.log).toHaveBeenCalledTimes(0);
 });
