@@ -1,16 +1,16 @@
-import { Use } from "../../../../src/lexer/statements/use";
-import { putContentIntoLines } from "../../../../src/reader/reader";
-import { Token } from "../../../../src/lexer/token";
+import {Use} from "../../../../src/lexer/statements/use";
+import {Token} from "../../../../src/lexer/token";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
   [
     "USE ;",
     {
-      lines: [
+      lines : [
         {
-          content: "USE ;",
-          num: 1,
-          tokens: [new Token("keyword", "use")],
+          content : "USE ;",
+          num : 1,
+          tokens : [ new Token("keyword", "use") ],
         },
       ],
     },
@@ -19,11 +19,11 @@ test.each([
   [
     "USE symfony ;",
     {
-      lines: [
+      lines : [
         {
-          content: "USE symfony ;",
-          num: 1,
-          tokens: [
+          content : "USE symfony ;",
+          num : 1,
+          tokens : [
             new Token("keyword", "use"),
             new Token("table_reference", "symfony"),
           ],
@@ -35,11 +35,11 @@ test.each([
   [
     "use symfony pricing ;",
     {
-      lines: [
+      lines : [
         {
-          content: "use symfony pricing ;",
-          num: 1,
-          tokens: [
+          content : "use symfony pricing ;",
+          num : 1,
+          tokens : [
             new Token("keyword", "use"),
             new Token("table_reference", "symfony"),
             new Token("table_reference", "pricing"),

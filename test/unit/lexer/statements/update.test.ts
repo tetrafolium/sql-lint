@@ -1,16 +1,16 @@
-import { Update } from "../../../../src/lexer/statements/update";
-import { putContentIntoLines } from "../../../../src/reader/reader";
-import { Token } from "../../../../src/lexer/token";
+import {Update} from "../../../../src/lexer/statements/update";
+import {Token} from "../../../../src/lexer/token";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
   [
     "UPDATE ;",
     {
-      lines: [
+      lines : [
         {
-          content: "UPDATE ;",
-          num: 1,
-          tokens: [new Token("keyword", "update")],
+          content : "UPDATE ;",
+          num : 1,
+          tokens : [ new Token("keyword", "update") ],
         },
       ],
     },
@@ -19,11 +19,11 @@ test.each([
   [
     "UPDATE symfony.gig ;",
     {
-      lines: [
+      lines : [
         {
-          content: "UPDATE symfony.gig ;",
-          num: 1,
-          tokens: [
+          content : "UPDATE symfony.gig ;",
+          num : 1,
+          tokens : [
             new Token("keyword", "update"),
             new Token("table_reference", "symfony.gig"),
           ],

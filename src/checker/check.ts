@@ -7,9 +7,7 @@ abstract class Check {
    * Infers the name of the error message from the child's
    * class name.
    */
-  public getName() {
-    return p.paramCase(this.constructor.name);
-  }
+  public getName() { return p.paramCase(this.constructor.name); }
 }
 
-export { Check };
+export {Check};
