@@ -1,16 +1,16 @@
-import {Create} from "../../../../src/lexer/statements/create";
-import {Token} from "../../../../src/lexer/token";
-import {putContentIntoLines} from "../../../../src/reader/reader";
+import { Create } from "../../../../src/lexer/statements/create";
+import { Token } from "../../../../src/lexer/token";
+import { putContentIntoLines } from "../../../../src/reader/reader";
 
 test.each([
   [
     "CREATE ;",
     {
-      lines : [
+      lines: [
         {
-          content : "CREATE ;",
-          num : 1,
-          tokens : [ new Token("keyword", "create") ],
+          content: "CREATE ;",
+          num: 1,
+          tokens: [new Token("keyword", "create")],
         },
       ],
     },
@@ -18,11 +18,11 @@ test.each([
   [
     "CREATE TABLE ;",
     {
-      lines : [
+      lines: [
         {
-          content : "CREATE TABLE ;",
-          num : 1,
-          tokens : [
+          content: "CREATE TABLE ;",
+          num: 1,
+          tokens: [
             new Token("keyword", "create"),
             new Token("option", "table"),
           ],
@@ -33,11 +33,11 @@ test.each([
   [
     "CREATE DATABASE ;",
     {
-      lines : [
+      lines: [
         {
-          content : "CREATE DATABASE ;",
-          num : 1,
-          tokens : [
+          content: "CREATE DATABASE ;",
+          num: 1,
+          tokens: [
             new Token("keyword", "create"),
             new Token("option", "database"),
           ],

@@ -1,9 +1,9 @@
-import {sprintf} from "sprintf-js";
+import { sprintf } from "sprintf-js";
 
-import {Query} from "../../reader/query";
-import {Check} from "../check";
-import {CheckerResult} from "../checkerResult";
-import {IChecker} from "../interface";
+import { Query } from "../../reader/query";
+import { Check } from "../check";
+import { CheckerResult } from "../checkerResult";
+import { IChecker } from "../interface";
 
 class TrailingWhitespace extends Check implements IChecker {
   public message: string = "";
@@ -24,8 +24,10 @@ class TrailingWhitespace extends Check implements IChecker {
     this.getName();
     for (const line of query.lines) {
       if (line.content.endsWith(" ")) {
-        return new CheckerResult(line.num,
-                                 sprintf(this.prefix + "Trailing whitespace"));
+        return new CheckerResult(
+          line.num,
+          sprintf(this.prefix + "Trailing whitespace")
+        );
       }
     }
 
@@ -33,4 +35,4 @@ class TrailingWhitespace extends Check implements IChecker {
   }
 }
 
-export {TrailingWhitespace};
+export { TrailingWhitespace };

@@ -24,4 +24,4 @@ class CheckerResult {
   }
 }
 
-export {CheckerResult};
+export { CheckerResult };

@@ -17,6 +17,7 @@ nearleyc use-statement.ne -o grammar.js
 
 (Note the use of testing the compiled .js file. Typescript support isn't great
 in nearley)
+
 ```
 nearley-test -i "use test;" grammar.js
 ```
