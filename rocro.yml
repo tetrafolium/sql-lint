@@ -59,7 +59,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 14}
 
-    - name: yamllint
+    - name: yamllint_docker
       type: docker-build
       dockerfile: '.rocro/yamllint/Dockerfile'
       options:
@@ -74,6 +74,26 @@ inspecode:
           path: "/.reports/yamllint.sarif"
       machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
+
+    - name: yamllint_shell
+      type: shell
+      commands:
+        - REPODIR="$(pwd)"
+        - OUTDIR="${REPODIR}/.reports"
+        - echo +++ REPODIR is "${REPODIR}"
+        - echo +++ OUTDIR is "${OUTDIR}"
+        - mkdir -p "${OUTDIR}"
+        - sudo apt-get update && sudo apt-get install -y curl
+        - curl http://localhost/yamllint-issues.txt > "${OUTDIR}/yamllint.issues"
+        - ls -al "${OUTDIR}"
+        - for fn in ${OUTDIR}/*.issues; do (echo "========" ; cat -n "$fn" ; echo "========"); done
+      reports:
+        - path: '.reports/yamllint.issues'
+          format: {type: example, path: '.rocro/yamllint/issues.example'}
+      artifacts:
+        uploads:
+          - path: '.reports/'
+      thresholds: {num-issues: 999}
 
   tools:
 
