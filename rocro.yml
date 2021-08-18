@@ -1,15 +1,37 @@
 ---
 inspecode:
 
-  # global:
-  #   runtime:
-  #     go: 1.14
-
-  # experimental:
-  #   env:
-  #     GO111MODULE: auto
-
   tasks:
+
+    - name: dflint_docker
+      type: docker-build
+      dockerfile: '.rocro/dflint/Dockerfile'
+      options:
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
+      artifacts:
+        uploads:
+          - stage: linter-stage
+            path: '/.reports/'
+      reports:
+        - stage: linter-stage
+          path: '/.reports/dockerfilelint.sarif'
+      thresholds: {num-issues: 2}
+
+    - name: hadolint_docker
+      type: docker-build
+      dockerfile: '.rocro/hadolint/Dockerfile'
+      options:
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
+      artifacts:
+        uploads:
+          - stage: linter-stage
+            path: '/.reports/'
+      reports:
+        - stage: linter-stage
+          path: '/.reports/hadolint.sarif'
+      thresholds: {num-issues: 13}
 
     - name: misspell_shell
       type: shell
@@ -36,50 +58,20 @@ inspecode:
           format: {type: example, path: '.rocro/misspell/issues.example'}
       thresholds: {num-issues: 9}
 
-    # - name: dflint_docker
-    #   type: docker-build
-    #   dockerfile: '.rocro/dflint/Dockerfile'
-    #   options:
-    #     --context: .
-    #     --build-arg: [OUTDIR=/.reports]
-    #   artifacts:
-    #     uploads:
-    #       - stage: linter-stage
-    #         path: "/.reports/"
-    #   reports:
-    #     - stage: linter-stage
-    #       path: "/.reports/dockerfilelint.sarif"
-    #   thresholds: {num-issues: 2}
-
-    # - name: hadolint_docker
-    #   type: docker-build
-    #   dockerfile: '.rocro/hadolint/Dockerfile'
-    #   options:
-    #     --context: .
-    #     --build-arg: [OUTDIR=/.reports]
-    #   artifacts:
-    #     uploads:
-    #       - stage: linter-stage
-    #         path: "/.reports/"
-    #   reports:
-    #     - stage: linter-stage
-    #       path: "/.reports/hadolint.sarif"
-    #   thresholds: {num-issues: 13}
-
-    # - name: sql-lint_docker
-    #   type: docker-build
-    #   dockerfile: '.rocro/sqllint/Dockerfile'
-    #   options:
-    #     --context: .
-    #     --build-arg: [OUTDIR=/.reports]
-    #   artifacts:
-    #     uploads:
-    #       - stage: linter-stage
-    #         path: "/.reports/"
-    #   reports:
-    #     - stage: linter-stage
-    #       path: "/.reports/sql-lint.sarif"
-    #   thresholds: {num-issues: 14}
+    - name: sql-lint_docker
+      type: docker-build
+      dockerfile: '.rocro/sqllint/Dockerfile'
+      options:
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
+      artifacts:
+        uploads:
+          - stage: linter-stage
+            path: '/.reports/'
+      reports:
+        - stage: linter-stage
+          path: '/.reports/sql-lint.sarif'
+      thresholds: {num-issues: 14}
 
     - name: sql-lint_shell
       type: shell
@@ -107,30 +99,27 @@ inspecode:
       reports:
         - path: '.reports/sqllint.issues'
           format: {type: example, path: '.rocro/sqllint/issues.example'}
-      thresholds: {num-issues: 999}
+      thresholds: {num-issues: 14}
 
-    # - name: yamllint_docker
-    #   type: docker-build
-    #   dockerfile: '.rocro/yamllint/Dockerfile'
-    #   options:
-    #     --context: .
-    #     --build-arg: [OUTDIR=/.reports]
-    #   artifacts:
-    #     uploads:
-    #       - stage: linter-stage
-    #         path: "/.reports/"
-    #   reports:
-    #     - stage: linter-stage
-    #       path: "/.reports/yamllint.sarif"
-    #   thresholds: {num-issues: 3}
+    - name: yamllint_docker
+      type: docker-build
+      dockerfile: '.rocro/yamllint/Dockerfile'
+      options:
+        --context: .
+        --build-arg: [OUTDIR=/.reports]
+      artifacts:
+        uploads:
+          - stage: linter-stage
+            path: '/.reports/'
+      reports:
+        - stage: linter-stage
+          path: '/.reports/yamllint.sarif'
+      thresholds: {num-issues: 3}
 
     - name: yamllint_shell
       type: shell
       commands:
-        - sudo apt-get update && sudo apt-get install -y python pip
-        - echo "+++ python .. $(python --version)"
-        - echo "+++ pip .. $(pip --version)"
-        - pip install 'yamllint>=1.24.0,<1.25.0'
+        - sudo apt-get update && sudo apt-get install -y yamllint
         - echo "+++ $(yamllint --version)"
         - REPODIR="$(pwd)"
         - OUTDIR="${REPODIR}/.reports"
@@ -144,12 +133,11 @@ inspecode:
         - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
       artifacts:
         uploads:
-          - stage: linter-stage
-            path: "/.reports/"
+          - path: '.reports/yamllint.issues'
       reports:
-        - stage: linter-stage
-          path: "/.reports/yamllint.sarif"
-      thresholds: {num-issues: 999}
+        - path: '.reports/yamllint.issues'
+          format: {type: example, path: '.rocro/yamllint/issues.example'}
+      thresholds: {num-issues: 2}
 
   tools:
 
