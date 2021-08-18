@@ -25,7 +25,7 @@ inspecode:
         - echo +++ OUTDIR is "${OUTDIR}"
         - echo +++ OUTFILE is "${OUTFILE}"
         - mkdir -p "${OUTDIR}"
-        - find . -name '*.scala' -print | xargs ./bin/misspell > "${OUTFILE}"
+        - find . -type f -print | xargs ./bin/misspell > "${OUTFILE}"
         - ls -al "${OUTDIR}"
         - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
       reports:
@@ -34,7 +34,7 @@ inspecode:
       artifacts:
         uploads:
           - path: '.reports/misspell.issues'
-      thresholds: {num-issues: 5}
+      thresholds: {num-issues: 999}
 
     - name: dflint_docker
       type: docker-build
