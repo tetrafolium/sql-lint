@@ -1,6 +1,6 @@
-import { Query } from "../../reader/query";
-import { CheckerResult } from "../checkerResult";
-import { IChecker } from "../interface";
+import {Query} from "../../reader/query";
+import {CheckerResult} from "../checkerResult";
+import {IChecker} from "../interface";
 
 class MySqlError implements IChecker {
   public errors: any;
@@ -10,12 +10,10 @@ class MySqlError implements IChecker {
   // since the error message is dynamically generated.
   public message = "";
 
-  public appliesTo = ["select", "create", "update", "drop", "insert"];
+  public appliesTo = [ "select", "create", "update", "drop", "insert" ];
   public additionalInformation = "";
 
-  constructor(errors: any) {
-    this.errors = errors;
-  }
+  constructor(errors: any) { this.errors = errors; }
 
   public check(query: Query): CheckerResult {
     if (this.appliesTo.includes(query.category)) {
@@ -33,4 +31,4 @@ class MySqlError implements IChecker {
   }
 }
 
-export { MySqlError };
+export {MySqlError};

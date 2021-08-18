@@ -1,10 +1,10 @@
-import { OddCodePoint } from "../../../../src/checker/checks/oddCodePoint";
-import { tokenise } from "../../../../src/lexer/lexer";
-import { putContentIntoLines } from "../../../../src/reader/reader";
+import {OddCodePoint} from "../../../../src/checker/checks/oddCodePoint";
+import {tokenise} from "../../../../src/lexer/lexer";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
-  ["SELECT 1;", ""],
-  ["SELECT name FROM person WHERE name ='Jane Doe';", ""],
+  [ "SELECT 1;", "" ],
+  [ "SELECT name FROM person WHERE name ='Jane Doe';", "" ],
   [
     "SELECT name FROM person WHERE name ='�';",
     "[sql-lint: odd-code-point] Unexpected code point.",
