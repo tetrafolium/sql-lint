@@ -87,9 +87,9 @@ inspecode:
         - sudo apt-get update && sudo apt-get install -y nodejs npm
         - echo "+++ node .. $(node --version)"
         - echo "+++ npm .. $(npm --version)"
-        - npm install --global typescript
+        - sudo npm install --global typescript
         - echo "+++ tsc .. $(tsc --version)"
-        - npm install --global sql-lint
+        - sudo npm install --global sql-lint
         - echo "+++ sql-lint .. $(sql-lint --version)"
         - REPODIR="$(pwd)"
         - OUTDIR="${REPODIR}/.reports"
@@ -127,7 +127,7 @@ inspecode:
     - name: yamllint_shell
       type: shell
       commands:
-        # - sudo apt-get update && sudo apt-get install -y python pip
+        - sudo apt-get update && sudo apt-get install -y python pip
         - echo "+++ python .. $(python --version)"
         - echo "+++ pip .. $(pip --version)"
         - pip install 'yamllint>=1.24.0,<1.25.0'
