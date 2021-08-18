@@ -29,8 +29,9 @@ inspecode:
     - name: yamllint_shell
       type: shell
       commands:
-        - sudo apt-get update && sudo apt-get install -y python yamllint
-        - echo "+++ $(python --version)"
+        # - sudo apt-get update && sudo apt-get install -y python yamllint
+        # - echo "+++ $(python --version)"
+        - sudo apt-get update && sudo apt-get install -y yamllint
         - echo "+++ $(yamllint --version)"
         - REPODIR="$(pwd)"
         - OUTDIR="${REPODIR}/.reports"
