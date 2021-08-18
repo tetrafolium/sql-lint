@@ -1,16 +1,16 @@
-import {sprintf} from "sprintf-js";
+import { sprintf } from "sprintf-js";
 
-import {Types} from "../../lexer/types";
-import {Query} from "../../reader/query";
-import {Check} from "../check";
-import {CheckerResult} from "../checkerResult";
-import {IChecker} from "../interface";
+import { Types } from "../../lexer/types";
+import { Query } from "../../reader/query";
+import { Check } from "../check";
+import { CheckerResult } from "../checkerResult";
+import { IChecker } from "../interface";
 
 class DatabaseNotFound extends Check implements IChecker {
   public message = "Database '%s' does not exist.";
   public additionalInformation = "";
   public requiresConnection = true;
-  public appliesTo = [ "select", "create", "update", "drop", "insert" ];
+  public appliesTo = ["select", "create", "update", "drop", "insert"];
   public databases: string[];
   constructor(databases: any[]) {
     super();
@@ -23,7 +23,9 @@ class DatabaseNotFound extends Check implements IChecker {
           const database = token.value;
           if (!this.databases.includes(database) && database !== ";") {
             return new CheckerResult(
-                line.num, sprintf(this.prefix + this.message, database));
+              line.num,
+              sprintf(this.prefix + this.message, database)
+            );
           }
         }
       }
@@ -33,4 +35,4 @@ class DatabaseNotFound extends Check implements IChecker {
   }
 }
 
-export {DatabaseNotFound};
+export { DatabaseNotFound };

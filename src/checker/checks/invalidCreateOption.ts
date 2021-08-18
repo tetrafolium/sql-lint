@@ -8,14 +8,14 @@
  *   CREATE TABLE test;
  */
 
-import {Create} from "../../barrel/statements";
-import {IChecker} from "../interface";
+import { Create } from "../../barrel/statements";
+import { IChecker } from "../interface";
 
-import {InvalidOption} from "./invalidOption";
+import { InvalidOption } from "./invalidOption";
 
 class InvalidCreateOption extends InvalidOption implements IChecker {
   public checker = new Create();
-  public appliesTo = [ "create" ];
+  public appliesTo = ["create"];
 }
 
-export {InvalidCreateOption};
+export { InvalidCreateOption };

@@ -1,16 +1,17 @@
-import {Query} from "../../reader/query";
-import {Keyword} from "../../syntax/keywords";
-import {ILexer} from "../interface";
-import {cleanUnquotedIdentifier} from "../lexer";
-import {Token} from "../token";
-import {Types} from "../types";
+import { Query } from "../../reader/query";
+import { Keyword } from "../../syntax/keywords";
+import { ILexer } from "../interface";
+import { cleanUnquotedIdentifier } from "../lexer";
+import { Token } from "../token";
+import { Types } from "../types";
 
 class Select implements ILexer {
   public options: string[] = [];
 
   public tokenise(query: Query): Query {
-    const keywords =
-        Object.keys(Keyword).map((keyword) => keyword.toLowerCase());
+    const keywords = Object.keys(Keyword).map((keyword) =>
+      keyword.toLowerCase()
+    );
     let lastToken = "";
     query.lines.forEach((line) => {
       line.content.split(" ").forEach((word) => {
@@ -23,14 +24,16 @@ class Select implements ILexer {
 
           if (item.length > 0) {
             line.tokens.push(
-                new Token(Types.TableReference, cleanUnquotedIdentifier(item)));
+              new Token(Types.TableReference, cleanUnquotedIdentifier(item))
+            );
           }
         } else if (lastToken === Keyword.Limit) {
           item = cleanUnquotedIdentifier(item);
 
           if (item.length > 0) {
             line.tokens.push(
-                new Token(Types.RowCount, cleanUnquotedIdentifier(item)));
+              new Token(Types.RowCount, cleanUnquotedIdentifier(item))
+            );
           }
         } else {
           line.tokens.push(new Token(Types.Unidentified, item));
@@ -43,4 +46,4 @@ class Select implements ILexer {
   }
 }
 
-export {Select};
+export { Select };
