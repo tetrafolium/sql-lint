@@ -11,7 +11,32 @@ inspecode:
 
   tasks:
 
-    - name: dockerfilelint
+    - name: misspell_shell
+      type: shell
+      commands:
+        - sudo apt-get update && sudo apt-get install -y curl
+        - curl -L -o ./install-misspell.sh https://git.io/misspell
+        - sh ./install-misspell.sh
+        - ls -l ./bin/misspell
+        - REPODIR="$(pwd)"
+        - OUTDIR="${REPODIR}/.reports"
+        - OUTFILE="${OUTDIR}/misspell.issues"
+        - echo +++ REPODIR is "${REPODIR}"
+        - echo +++ OUTDIR is "${OUTDIR}"
+        - echo +++ OUTFILE is "${OUTFILE}"
+        - mkdir -p "${OUTDIR}"
+        - find . -name '*.scala' -print | xargs ./bin/misspell > "${OUTFILE}"
+        - ls -al "${OUTDIR}"
+        - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
+      reports:
+        - path: '.reports/misspell.issues'
+          format: {type: example, path: '.rocro/misspell/misspell.example'}
+      artifacts:
+        uploads:
+          - path: '.reports/misspell.issues'
+      thresholds: {num-issues: 5}
+
+    - name: dflint_docker
       type: docker-build
       dockerfile: '.rocro/dflint/Dockerfile'
       options:
@@ -27,7 +52,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 2}
 
-    - name: hadolint
+    - name: hadolint_docker
       type: docker-build
       dockerfile: '.rocro/hadolint/Dockerfile'
       options:
@@ -43,7 +68,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 13}
 
-    - name: sql-lint
+    - name: sql-lint_docker
       type: docker-build
       dockerfile: '.rocro/sqllint/Dockerfile'
       options:
@@ -59,7 +84,7 @@ inspecode:
       machine: {cpu: 0.75}
       thresholds: {num-issues: 14}
 
-    - name: yamllint
+    - name: yamllint_docker
       type: docker-build
       dockerfile: '.rocro/yamllint/Dockerfile'
       options:
