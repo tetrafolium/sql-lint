@@ -137,7 +137,7 @@ inspecode:
       reports:
         - path: '.reports/yamllint.issues'
           format: {type: example, path: '.rocro/yamllint/issues.example'}
-      thresholds: {num-issues: 2}
+      thresholds: {num-issues: 3}
 
   tools:
 
