@@ -1,0 +1,8 @@
+{{baseDir=.}}
+{{lineOriginZero=false}}
+{{columnOriginZero=false}}
+{{levelMap= {"":"error"} }}
+
+{{file:./test/test-files/select.sql}}:{{startLine:31}} {{message:[sql-lint: trailing-whitespace] Trailing whitespace}}
+{{file:./test/test-files/test.sql}}:{{startLine:21}} {{message:[sql-lint: unmatched-parentheses] Unmatched parentheses.}}
+{{file:./test/test-files/test.sql}}:{{startLine:39}} {{message:[sql-lint: hungarian-notation] Hungarian notation present in query}}

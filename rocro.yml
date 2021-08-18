@@ -28,13 +28,13 @@ inspecode:
         - find . -type f -print | xargs ./bin/misspell > "${OUTFILE}"
         - ls -al "${OUTDIR}"
         - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
-      reports:
-        - path: '.reports/misspell.issues'
-          format: {type: example, path: '.rocro/misspell/misspell.example'}
       artifacts:
         uploads:
           - path: '.reports/misspell.issues'
-      thresholds: {num-issues: 999}
+      reports:
+        - path: '.reports/misspell.issues'
+          format: {type: example, path: '.rocro/misspell/issues.example'}
+      thresholds: {num-issues: 9}
 
     - name: dflint_docker
       type: docker-build
@@ -49,7 +49,6 @@ inspecode:
       reports:
         - stage: linter-stage
           path: "/.reports/dockerfilelint.sarif"
-      machine: {cpu: 0.75}
       thresholds: {num-issues: 2}
 
     - name: hadolint_docker
@@ -65,7 +64,6 @@ inspecode:
       reports:
         - stage: linter-stage
           path: "/.reports/hadolint.sarif"
-      machine: {cpu: 0.75}
       thresholds: {num-issues: 13}
 
     - name: sql-lint_docker
@@ -81,8 +79,30 @@ inspecode:
       reports:
         - stage: linter-stage
           path: "/.reports/sql-lint.sarif"
-      machine: {cpu: 0.75}
       thresholds: {num-issues: 14}
+
+    - name: sql-lint_shell
+      type: shell
+      commands:
+        - npm install -g sql-lint
+        - echo "+++ sql-lint .. $(sql-lint --version)"
+        - REPODIR="$(pwd)"
+        - OUTDIR="${REPODIR}/.reports"
+        - OUTFILE="${OUTDIR}/sqllint.issues"
+        - echo +++ REPODIR is "${REPODIR}"
+        - echo +++ OUTDIR is "${OUTDIR}"
+        - echo +++ OUTFILE is "${OUTFILE}"
+        - mkdir -p "${OUTDIR}"
+        - ( find . -type f -name '*.sql' -print0 | xargs -0 -n 1 sql-lint --format simple ) > "${OUTFILE}" || true
+        - ls -al "${OUTDIR}"
+        - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
+      artifacts:
+        uploads:
+          - path: '.reports/sqllint.issues'
+      reports:
+        - path: '.reports/sqllint.issues'
+          format: {type: example, path: '.rocro/sqllint/issues.example'}
+      thresholds: {num-issues: 999}
 
     - name: yamllint_docker
       type: docker-build
@@ -97,8 +117,31 @@ inspecode:
       reports:
         - stage: linter-stage
           path: "/.reports/yamllint.sarif"
-      machine: {cpu: 0.75}
       thresholds: {num-issues: 3}
+
+    - name: yamllint_shell
+      type: shell
+      commands:
+        - pip3 install 'yamllint>=1.24.0,<1.25.0'
+        - echo "+++ $(yamllint --version)"
+        - REPODIR="$(pwd)"
+        - OUTDIR="${REPODIR}/.reports"
+        - OUTFILE="${OUTDIR}/yamllint.issues"
+        - echo +++ REPODIR is "${REPODIR}"
+        - echo +++ OUTDIR is "${OUTDIR}"
+        - echo +++ OUTFILE is "${OUTFILE}"
+        - mkdir -p "${OUTDIR}"
+        - yamllint -f parsable . > "${OUTFILE}" || true
+        - ls -la "${OUTDIR}"
+        - (echo "========" ; cat -n "${OUTFILE}" ; echo "========")
+      artifacts:
+        uploads:
+          - stage: linter-stage
+            path: "/.reports/"
+      reports:
+        - stage: linter-stage
+          path: "/.reports/yamllint.sarif"
+      thresholds: {num-issues: 999}
 
   tools:
 
