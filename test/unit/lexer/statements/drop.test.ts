@@ -1,16 +1,16 @@
-import {Drop} from "../../../../src/lexer/statements/drop";
-import {Token} from "../../../../src/lexer/token";
-import {putContentIntoLines} from "../../../../src/reader/reader";
+import { Drop } from "../../../../src/lexer/statements/drop";
+import { Token } from "../../../../src/lexer/token";
+import { putContentIntoLines } from "../../../../src/reader/reader";
 
 test.each([
   [
     "DROP ;",
     {
-      lines : [
+      lines: [
         {
-          content : "DROP ;",
-          num : 1,
-          tokens : [ new Token("keyword", "drop") ],
+          content: "DROP ;",
+          num: 1,
+          tokens: [new Token("keyword", "drop")],
         },
       ],
     },
@@ -18,12 +18,11 @@ test.each([
   [
     "DROP TABLE ;",
     {
-      lines : [
+      lines: [
         {
-          content : "DROP TABLE ;",
-          num : 1,
-          tokens :
-              [ new Token("keyword", "drop"), new Token("option", "table") ],
+          content: "DROP TABLE ;",
+          num: 1,
+          tokens: [new Token("keyword", "drop"), new Token("option", "table")],
         },
       ],
     },
@@ -31,11 +30,11 @@ test.each([
   [
     "DROP DATABASE ;",
     {
-      lines : [
+      lines: [
         {
-          content : "DROP DATABASE ;",
-          num : 1,
-          tokens : [
+          content: "DROP DATABASE ;",
+          num: 1,
+          tokens: [
             new Token("keyword", "drop"),
             new Token("option", "database"),
           ],

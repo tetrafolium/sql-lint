@@ -8,7 +8,7 @@
  * It wouldn't trigger for this:
  *   DROP TABLE test;
  */
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.InvalidOption = void 0;
 const checkerResult_1 = require("../checkerResult");
 const types_1 = require("../../lexer/types");
@@ -20,17 +20,23 @@ class InvalidOption extends check_1.Check {
     this.message = "Option '%s' is not a valid option, must be one of '%s'.";
     this.additionalInformation = "";
     this.requiresConnection = false;
-    this.appliesTo = [ "select", "create", "update", "drop", "insert" ];
+    this.appliesTo = ["select", "create", "update", "drop", "insert"];
   }
   check(query) {
     for (const line of query.lines) {
       for (const token of line.tokens) {
-        if (token.type === types_1.Types.Option &&
-            !this.checker.options.includes(token.value)) {
+        if (
+          token.type === types_1.Types.Option &&
+          !this.checker.options.includes(token.value)
+        ) {
           return new checkerResult_1.CheckerResult(
-              line.num,
-              sprintf_js_1.sprintf(this.prefix + this.message, token.value,
-                                   JSON.stringify(this.checker.options)));
+            line.num,
+            sprintf_js_1.sprintf(
+              this.prefix + this.message,
+              token.value,
+              JSON.stringify(this.checker.options)
+            )
+          );
         }
       }
     }

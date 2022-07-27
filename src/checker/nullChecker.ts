@@ -1,7 +1,7 @@
-import {Query} from "../reader/query";
+import { Query } from "../reader/query";
 
-import {CheckerResult} from "./checkerResult";
-import {IChecker} from "./interface";
+import { CheckerResult } from "./checkerResult";
+import { IChecker } from "./interface";
 
 class NullChecker implements IChecker {
   public message: string = "";
@@ -14,4 +14,4 @@ class NullChecker implements IChecker {
   }
 }
 
-export {NullChecker};
+export { NullChecker };

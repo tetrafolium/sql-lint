@@ -3,10 +3,16 @@ import * as anyDB from "any-db";
 class Database {
   public connection: any;
 
-  constructor(driver: string, host: string, user: string, password: string,
-              port?: string) {
+  constructor(
+    driver: string,
+    host: string,
+    user: string,
+    password: string,
+    port?: string
+  ) {
     this.connection = anyDB.createConnection(
-        `${driver}://${user}:${password}@${host}:${port}`);
+      `${driver}://${user}:${password}@${host}:${port}`
+    );
   }
 
   public getDatabases(connection: any, callback: any): void {
@@ -23,8 +29,11 @@ class Database {
    * Runs an EXPLAIN on the query. If it doesn't run successfully, errors will
    * come through, which is what we want.
    */
-  public lintQuery(connection: anyDB.Connection, query: string,
-                   callback: any): void {
+  public lintQuery(
+    connection: anyDB.Connection,
+    query: string,
+    callback: any
+  ): void {
     connection.query(`EXPLAIN ${query}`, [], (error, results) => {
       if (error) {
         callback(error);
@@ -33,4 +42,4 @@ class Database {
   }
 }
 
-export {Database};
+export { Database };

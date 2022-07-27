@@ -1,45 +1,45 @@
-import {categorise, extractTableReference} from "../../../src/lexer/lexer";
+import { categorise, extractTableReference } from "../../../src/lexer/lexer";
 
 test.each([
   // SELECT statements
-  [ "SELECT * FROM person", "select" ],
+  ["SELECT * FROM person", "select"],
 
   // DELETE statements
-  [ "DELETE FROM person WHERE name = 'John.Doe'", "delete" ],
+  ["DELETE FROM person WHERE name = 'John.Doe'", "delete"],
 
   // UPDATE statements
-  [ "UPDATE person SET name = 'Joe.Reynolds'", "update" ],
+  ["UPDATE person SET name = 'Joe.Reynolds'", "update"],
 
   // A statement with a trailing space
-  [ "   SELECT    * FROM person", "select" ],
+  ["   SELECT    * FROM person", "select"],
 
   // A statement with a lowercase keyword
-  [ " select * from person", "select" ],
+  [" select * from person", "select"],
 
   // A create table statement
-  [ "CREATE TABLE person", "create" ],
+  ["CREATE TABLE person", "create"],
 
   // DECLARE statements
-  [ "DECLARE p_test_statement DECIMAL(10,2)", "declare" ],
+  ["DECLARE p_test_statement DECIMAL(10,2)", "declare"],
 
   // LEAVE statements
-  [ "LEAVE some_stored_procedure", "leave" ],
+  ["LEAVE some_stored_procedure", "leave"],
 
   // CALL statements
-  [ "CALL some_stored_procedure", "call" ],
+  ["CALL some_stored_procedure", "call"],
 
   // REPLACE statements
-  [ "REPLACE table_name", "replace" ],
+  ["REPLACE table_name", "replace"],
 
   // RETURN statements
-  [ "RETURN 4", "return" ],
+  ["RETURN 4", "return"],
 
   // SHOW statements
-  [ "SHOW TABLES FROM some_database", "show" ],
+  ["SHOW TABLES FROM some_database", "show"],
 
   // USE statements
-  [ "USE symfony", "use" ],
-  [ "use symfony;", "use" ],
+  ["USE symfony", "use"],
+  ["use symfony;", "use"],
 ])("Queries are categorised correctly", (query, expected) => {
   const actual = categorise(query);
   expect(actual).toEqual(expected);
@@ -49,22 +49,22 @@ test.each([
   [
     "symfony.gigs.venue",
     {
-      database : "symfony",
-      table : "gigs",
-      column : "venue",
+      database: "symfony",
+      table: "gigs",
+      column: "venue",
     },
   ],
   [
     "gigs",
     {
-      table : "gigs",
+      table: "gigs",
     },
   ],
   [
     "symfony.gigs",
     {
-      database : "symfony",
-      table : "gigs",
+      database: "symfony",
+      table: "gigs",
     },
   ],
 ])("Table references are correctly categorised", (tableReference, expected) => {

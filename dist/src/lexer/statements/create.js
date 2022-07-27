@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Create = void 0;
 const lexer_1 = require("../lexer");
 const keywords_1 = require("../../syntax/keywords");
@@ -37,8 +37,12 @@ class Create {
         } else if (lastToken === keywords_1.Keyword.Create) {
           item = lexer_1.cleanUnquotedIdentifier(item);
           if (item.length > 0) {
-            line.tokens.push(new token_1.Token(
-                types_1.Types.Option, lexer_1.cleanUnquotedIdentifier(item)));
+            line.tokens.push(
+              new token_1.Token(
+                types_1.Types.Option,
+                lexer_1.cleanUnquotedIdentifier(item)
+              )
+            );
           }
         }
         lastToken = item;

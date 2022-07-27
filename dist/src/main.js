@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const program = require("commander");
 const fs = require("fs");
 const process = require("process");
@@ -12,31 +12,41 @@ const config_1 = require("./config");
 const reader_1 = require("./reader/reader");
 const package_json_1 = require("../package.json");
 const file_1 = require("./file");
-function increaseVerbosity(v, total) { return total + 1; }
-program.version(package_json_1.version)
-    .option("--fix [string]", "The .sql string to fix")
-    .option("-d, --driver <string>",
-            "The driver to use, must be one of ['mysql', 'postgres']")
-    .option(
-        "-v, --verbose",
-        "Brings back information on the what it's linting and the tokens generated",
-        increaseVerbosity, 0)
-    .option("--format <string>",
-            "The format of the output, can be one of ['simple', 'json']",
-            "simple")
-    .option("--host <string>", "The host for the connection")
-    .option("--user <string>", "The user for the connection")
-    .option("--password <string>", "The password for the connection")
-    .option("--port <string>", "The port for the connection")
-    .option("--config <string>", "The path to the configuration file")
-    .parse(process.argv);
+function increaseVerbosity(v, total) {
+  return total + 1;
+}
+program
+  .version(package_json_1.version)
+  .option("--fix [string]", "The .sql string to fix")
+  .option(
+    "-d, --driver <string>",
+    "The driver to use, must be one of ['mysql', 'postgres']"
+  )
+  .option(
+    "-v, --verbose",
+    "Brings back information on the what it's linting and the tokens generated",
+    increaseVerbosity,
+    0
+  )
+  .option(
+    "--format <string>",
+    "The format of the output, can be one of ['simple', 'json']",
+    "simple"
+  )
+  .option("--host <string>", "The host for the connection")
+  .option("--user <string>", "The user for the connection")
+  .option("--password <string>", "The password for the connection")
+  .option("--port <string>", "The port for the connection")
+  .option("--config <string>", "The path to the configuration file")
+  .parse(process.argv);
 let queries = [];
 let prefix = "";
 const formatterFactory = new formatterFactory_1.FormatterFactory();
 const format = formatterFactory.build(program.format);
 const printer = new printer_1.Printer(program.verbose, format);
-const configuration =
-    config_1.getConfiguration(program.config || config_1.file);
+const configuration = config_1.getConfiguration(
+  program.config || config_1.file
+);
 const runner = new checkerRunner_1.CheckerRunner();
 const programFile = program.args[0];
 if (program.fix) {
@@ -69,34 +79,39 @@ let db;
 if (configuration === null) {
   printer.warnAboutNoConfiguration(config_1.file);
 }
-if (program.host ||
-    (configuration === null || configuration === void 0 ? void 0
-                                                        : configuration.host)) {
+if (
+  program.host ||
+  (configuration === null || configuration === void 0
+    ? void 0
+    : configuration.host)
+) {
   db = new database_1.Database(
-      program.driver ||
-          (configuration === null || configuration === void 0
-               ? void 0
-               : configuration.driver) ||
-          "mysql",
-      program.host ||
-          (configuration === null || configuration === void 0
-               ? void 0
-               : configuration.host) ||
-          "localhost",
-      program.user ||
-          (configuration === null || configuration === void 0
-               ? void 0
-               : configuration.user) ||
-          "root", // bad practice but unfortunately common, make it easier for
-                  // the user
-      program.password || (configuration === null || configuration === void 0
-                               ? void 0
-                               : configuration.password),
-      program.port ||
-          (configuration === null || configuration === void 0
-               ? void 0
-               : configuration.port) ||
-          "3306");
+    program.driver ||
+      (configuration === null || configuration === void 0
+        ? void 0
+        : configuration.driver) ||
+      "mysql",
+    program.host ||
+      (configuration === null || configuration === void 0
+        ? void 0
+        : configuration.host) ||
+      "localhost",
+    program.user ||
+      (configuration === null || configuration === void 0
+        ? void 0
+        : configuration.user) ||
+      "root", // bad practice but unfortunately common, make it easier for
+    // the user
+    program.password ||
+      (configuration === null || configuration === void 0
+        ? void 0
+        : configuration.password),
+    program.port ||
+      (configuration === null || configuration === void 0
+        ? void 0
+        : configuration.port) ||
+      "3306"
+  );
 }
 if (programFile) {
   if (fs.lstatSync(programFile).isDirectory()) {
@@ -111,9 +126,12 @@ if (programFile) {
   }
 }
 runner.run(queries, printer, prefix, omittedErrors, db);
-if (program.host ||
-    (configuration === null || configuration === void 0 ? void 0
-                                                        : configuration.host)) {
+if (
+  program.host ||
+  (configuration === null || configuration === void 0
+    ? void 0
+    : configuration.host)
+) {
   db.connection.end();
 }
 //# sourceMappingURL=main.js.map

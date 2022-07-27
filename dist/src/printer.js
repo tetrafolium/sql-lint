@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Printer = void 0;
 const fixer_1 = require("./fixer");
 class Printer {
@@ -38,13 +38,13 @@ class Printer {
   }
   warnAboutUncategoriseableQuery(content) {
     const title = "Unable to lint query";
-    const url =
-        encodeURI(`https://github.com/joereynolds/sql-lint/issues/new?title=${
-            title}&body=${content}`);
+    const url = encodeURI(
+      `https://github.com/joereynolds/sql-lint/issues/new?title=${title}&body=${content}`
+    );
     console.log(
-        `sql-lint was unable to lint the following query "${content}".` +
-        `This could be a bug with sql-lint. Visit this URL to create a bug report: ${
-            url}`);
+      `sql-lint was unable to lint the following query "${content}".` +
+        `This could be a bug with sql-lint. Visit this URL to create a bug report: ${url}`
+    );
   }
   warnAboutFileNotFound(file) {
     console.log(`Can't open file ${file}. Does it exist?`);
@@ -52,10 +52,11 @@ class Printer {
   warnAboutNoConfiguration(file) {
     if (this.verbosity) {
       console.log(
-          `Can't open file ${file}. Does it exist?` +
+        `Can't open file ${file}. Does it exist?` +
           "\nA configuration file will enable errors from your DB server and give better error reporting." +
           "\nRead more here: https://sql-lint.readthedocs.io/en/latest/files/configuration.html" +
-          "\n");
+          "\n"
+      );
     }
   }
 }

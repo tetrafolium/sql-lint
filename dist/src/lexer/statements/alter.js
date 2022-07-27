@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Alter = void 0;
 const lexer_1 = require("../lexer");
 const types_1 = require("../types");
@@ -32,8 +32,12 @@ class Alter {
         } else if (lastToken === keywords_1.Keyword.Alter) {
           item = lexer_1.cleanUnquotedIdentifier(item);
           if (item.length > 0) {
-            line.tokens.push(new token_1.Token(
-                types_1.Types.Option, lexer_1.cleanUnquotedIdentifier(item)));
+            line.tokens.push(
+              new token_1.Token(
+                types_1.Types.Option,
+                lexer_1.cleanUnquotedIdentifier(item)
+              )
+            );
           }
         }
         lastToken = item;

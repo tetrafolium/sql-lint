@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseNotFound = void 0;
 const checkerResult_1 = require("../checkerResult");
 const types_1 = require("../../lexer/types");
@@ -11,7 +11,7 @@ class DatabaseNotFound extends check_1.Check {
     this.message = "Database '%s' does not exist.";
     this.additionalInformation = "";
     this.requiresConnection = true;
-    this.appliesTo = [ "select", "create", "update", "drop", "insert" ];
+    this.appliesTo = ["select", "create", "update", "drop", "insert"];
     this.databases = databases.map((result) => result.Database);
   }
   check(query) {
@@ -21,8 +21,9 @@ class DatabaseNotFound extends check_1.Check {
           const database = token.value;
           if (!this.databases.includes(database) && database !== ";") {
             return new checkerResult_1.CheckerResult(
-                line.num,
-                sprintf_js_1.sprintf(this.prefix + this.message, database));
+              line.num,
+              sprintf_js_1.sprintf(this.prefix + this.message, database)
+            );
           }
         }
       }

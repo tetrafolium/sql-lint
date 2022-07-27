@@ -1,12 +1,14 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Truncate = void 0;
 const lexer_1 = require("../lexer");
 const keywords_1 = require("../../syntax/keywords");
 const types_1 = require("../types");
 const token_1 = require("../token");
 class Truncate {
-  constructor() { this.options = [ "table" ]; }
+  constructor() {
+    this.options = ["table"];
+  }
   tokenise(query) {
     let lastToken = "";
     query.lines.forEach((line) => {
@@ -17,8 +19,12 @@ class Truncate {
         } else if (lastToken === keywords_1.Keyword.Truncate) {
           item = lexer_1.cleanUnquotedIdentifier(item);
           if (item.length > 0) {
-            line.tokens.push(new token_1.Token(
-                types_1.Types.Option, lexer_1.cleanUnquotedIdentifier(item)));
+            line.tokens.push(
+              new token_1.Token(
+                types_1.Types.Option,
+                lexer_1.cleanUnquotedIdentifier(item)
+              )
+            );
           }
         }
         lastToken = item;

@@ -1,12 +1,14 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Use = void 0;
 const lexer_1 = require("../lexer");
 const keywords_1 = require("../../syntax/keywords");
 const types_1 = require("../types");
 const token_1 = require("../token");
 class Use {
-  constructor() { this.options = []; }
+  constructor() {
+    this.options = [];
+  }
   tokenise(query) {
     query.lines.forEach((line) => {
       line.content.split(" ").forEach((word) => {
@@ -17,8 +19,11 @@ class Use {
           item = lexer_1.cleanUnquotedIdentifier(item);
           if (item.length > 0) {
             line.tokens.push(
-                new token_1.Token(types_1.Types.TableReference,
-                                  lexer_1.cleanUnquotedIdentifier(item)));
+              new token_1.Token(
+                types_1.Types.TableReference,
+                lexer_1.cleanUnquotedIdentifier(item)
+              )
+            );
           }
         }
       });

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TableNotFound = void 0;
 const lexer_1 = require("../../lexer/lexer");
 const checkerResult_1 = require("../checkerResult");
@@ -9,7 +9,7 @@ class TableNotFound {
   constructor(tables) {
     this.message = "Table '%s' does not exist in database '%s'.";
     this.additionalInformation = "";
-    this.appliesTo = [ "select", "create", "update", "drop", "insert" ];
+    this.appliesTo = ["select", "create", "update", "drop", "insert"];
     this.requiresConnection = false;
     this.tables = this.cleanTables(tables);
   }
@@ -18,11 +18,18 @@ class TableNotFound {
       for (const token of line.tokens) {
         if (token.type === types_1.Types.TableReference) {
           const reference = lexer_1.extractTableReference(token.value);
-          if (!this.tables.includes(reference.table) &&
-              reference.table !== "*") {
+          if (
+            !this.tables.includes(reference.table) &&
+            reference.table !== "*"
+          ) {
             return new checkerResult_1.CheckerResult(
-                line.num, sprintf_js_1.sprintf(this.message, reference.table,
-                                               reference.database));
+              line.num,
+              sprintf_js_1.sprintf(
+                this.message,
+                reference.table,
+                reference.database
+              )
+            );
           }
         }
       }

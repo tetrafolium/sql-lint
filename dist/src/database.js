@@ -1,11 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Database = void 0;
 const anyDB = require("any-db");
 class Database {
   constructor(driver, host, user, password, port) {
     this.connection = anyDB.createConnection(
-        `${driver}://${user}:${password}@${host}:${port}`);
+      `${driver}://${user}:${password}@${host}:${port}`
+    );
   }
   getDatabases(connection, callback) {
     connection.query("SHOW DATABASES", (error, results) => {

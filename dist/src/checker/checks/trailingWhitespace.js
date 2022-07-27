@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TrailingWhitespace = void 0;
 const checkerResult_1 = require("../checkerResult");
 const sprintf_js_1 = require("sprintf-js");
@@ -26,8 +26,9 @@ class TrailingWhitespace extends check_1.Check {
     for (const line of query.lines) {
       if (line.content.endsWith(" ")) {
         return new checkerResult_1.CheckerResult(
-            line.num,
-            sprintf_js_1.sprintf(this.prefix + "Trailing whitespace"));
+          line.num,
+          sprintf_js_1.sprintf(this.prefix + "Trailing whitespace")
+        );
       }
     }
     return new checkerResult_1.CheckerResult(0, "");

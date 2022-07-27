@@ -1,7 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
-exports.getQueryFromLine = exports.putContentIntoLines =
-    exports.getQueryFromFile = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getQueryFromLine =
+  exports.putContentIntoLines =
+  exports.getQueryFromFile =
+    void 0;
 const fs = require("fs");
 const line_1 = require("./line");
 const query_1 = require("./query");
@@ -19,8 +21,11 @@ function putContentIntoLines(contents) {
   const queriesFromFile = [];
   let currentQueryContent = "";
   let query = new query_1.Query();
-  const skipChars =
-      [ "", keywords_1.Keyword.Newline, keywords_1.Keyword.WindowsNewline ];
+  const skipChars = [
+    "",
+    keywords_1.Keyword.Newline,
+    keywords_1.Keyword.WindowsNewline,
+  ];
   contents = stripComments(contents);
   for (let i = 0; i < contents.length; i++) {
     if (!skipChars.includes(contents[i])) {
@@ -53,10 +58,11 @@ exports.putContentIntoLines = putContentIntoLines;
 function stripComments(content) {
   const contentInLines = content.split(keywords_1.Keyword.Newline);
   for (let i = 0; i < contentInLines.length; i++) {
-    if (contentInLines[i].startsWith(keywords_1.Keyword.CommentDash) ||
-        contentInLines[i].startsWith(keywords_1.Keyword.CommentHash) ||
-        contentInLines[i].startsWith(
-            keywords_1.Keyword.CommentMultiLineStart)) {
+    if (
+      contentInLines[i].startsWith(keywords_1.Keyword.CommentDash) ||
+      contentInLines[i].startsWith(keywords_1.Keyword.CommentHash) ||
+      contentInLines[i].startsWith(keywords_1.Keyword.CommentMultiLineStart)
+    ) {
       contentInLines[i] = "";
     }
   }
@@ -67,6 +73,8 @@ function stripComments(content) {
  * Line is always 0 since there are no
  * lines on the terminal.
  */
-function getQueryFromLine(query) { return putContentIntoLines(query); }
+function getQueryFromLine(query) {
+  return putContentIntoLines(query);
+}
 exports.getQueryFromLine = getQueryFromLine;
 //# sourceMappingURL=reader.js.map

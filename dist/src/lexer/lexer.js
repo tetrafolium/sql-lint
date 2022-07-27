@@ -1,7 +1,10 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value : true});
-exports.cleanUnquotedIdentifier = exports.extractTableReference =
-    exports.tokenise = exports.categorise = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cleanUnquotedIdentifier =
+  exports.extractTableReference =
+  exports.tokenise =
+  exports.categorise =
+    void 0;
 const keywords_1 = require("../syntax/keywords");
 const statementFactory_1 = require("./statementFactory");
 function categorise(query) {
@@ -9,9 +12,9 @@ function categorise(query) {
   // Cast the Keyword enum so we can to lookups on it without TypeScript
   // complaining.
   const keywordLookup = keywords_1.Keyword;
-  const result =
-      Object.keys(keywords_1.Keyword)
-          .find((keyword) => query.startsWith(keywordLookup[keyword]));
+  const result = Object.keys(keywords_1.Keyword).find((keyword) =>
+    query.startsWith(keywordLookup[keyword])
+  );
   if (result) {
     return keywordLookup[result];
   }
@@ -56,17 +59,17 @@ exports.tokenise = tokenise;
 function extractTableReference(tableReference) {
   const references = tableReference.split(".");
   const extractedReferences = {
-    3 : {
-      database : references[0],
-      table : references[1],
-      column : references[2],
+    3: {
+      database: references[0],
+      table: references[1],
+      column: references[2],
     },
-    2 : {
-      database : references[0],
-      table : references[1],
+    2: {
+      database: references[0],
+      table: references[1],
     },
-    1 : {
-      table : references[0],
+    1: {
+      table: references[0],
     },
   };
   return extractedReferences[references.length];

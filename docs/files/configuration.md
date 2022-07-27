@@ -14,7 +14,7 @@ sql-lint --driver="mysql" --host="localhost" --user="root" --password="hunter2"
 ## Via `config.json`
 
 A configuration file for `sql-lint` can reside in
-`~/.config/sql-lint/config.json`.  It follows the [XDG Base Directory
+`~/.config/sql-lint/config.json`. It follows the [XDG Base Directory
 Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
 Specifically, it uses `$HOME/.config`. (You can specify a different path for the
 config with the `--config` flag)
@@ -35,7 +35,6 @@ You should put the following in there for more intelligent errors to come throug
 
 An exhaustive list of the configuration options for your `config.json` file are
 below.
-
 
 ### `driver`
 
@@ -64,7 +63,7 @@ Optional, default is `3306`.
 
 ### `ignore-errors`
 
-Don't want to be warned about a particular error? 
+Don't want to be warned about a particular error?
 In that case add it to the `ignore-errors` array in `~/.config/sql-lint/config.json`.
 
 ```
@@ -83,7 +82,6 @@ The example above will skip checks for odd code points and `DELETE` statements w
 
 For a full list of all available checks, see [the check
 documentation](./checks.md)
-
 
 You cannot skip checks that are returned from the DB server itself, only the checks built into `sql-lint`.
 
