@@ -1,9 +1,11 @@
-import { InvalidTruncateOption } from "../../../../src/checker/checks/invalidTruncateOption";
-import { tokenise } from "../../../../src/lexer/lexer";
-import { putContentIntoLines } from "../../../../src/reader/reader";
+import {
+  InvalidTruncateOption
+} from "../../../../src/checker/checks/invalidTruncateOption";
+import {tokenise} from "../../../../src/lexer/lexer";
+import {putContentIntoLines} from "../../../../src/reader/reader";
 
 test.each([
-  ["TRUNCATE TABLE person;", ""],
+  [ "TRUNCATE TABLE person;", "" ],
   [
     "TRUNCATE JIBBERISH person;",
     /Option 'jibberish' is not a valid option, must be one of .*/,

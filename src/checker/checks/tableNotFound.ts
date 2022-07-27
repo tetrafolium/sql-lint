@@ -1,20 +1,19 @@
-import { extractTableReference } from "../../lexer/lexer";
-import { Query } from "../../reader/query";
-import { CheckerResult } from "../checkerResult";
-import { IChecker } from "../interface";
-import { Types } from "../../lexer/types";
-import { sprintf } from "sprintf-js";
+import {sprintf} from "sprintf-js";
+
+import {extractTableReference} from "../../lexer/lexer";
+import {Types} from "../../lexer/types";
+import {Query} from "../../reader/query";
+import {CheckerResult} from "../checkerResult";
+import {IChecker} from "../interface";
 
 class TableNotFound implements IChecker {
   public message = "Table '%s' does not exist in database '%s'.";
   public additionalInformation = "";
-  public appliesTo = ["select", "create", "update", "drop", "insert"];
+  public appliesTo = [ "select", "create", "update", "drop", "insert" ];
   public requiresConnection = false;
 
   public tables: string[];
-  constructor(tables: any[]) {
-    this.tables = this.cleanTables(tables);
-  }
+  constructor(tables: any[]) { this.tables = this.cleanTables(tables); }
 
   public check(query: Query): CheckerResult {
     for (const line of query.lines) {
@@ -22,14 +21,11 @@ class TableNotFound implements IChecker {
         if (token.type === Types.TableReference) {
           const reference = extractTableReference(token.value);
 
-          if (
-            !this.tables.includes(reference.table) &&
-            reference.table !== "*"
-          ) {
+          if (!this.tables.includes(reference.table) &&
+              reference.table !== "*") {
             return new CheckerResult(
-              line.num,
-              sprintf(this.message, reference.table, reference.database)
-            );
+                line.num,
+                sprintf(this.message, reference.table, reference.database));
           }
         }
       }
@@ -50,4 +46,4 @@ class TableNotFound implements IChecker {
   }
 }
 
-export { TableNotFound };
+export {TableNotFound};
